@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /* TEST GIT */
 // TEST MOI
 // DEUXIEME TEST
+/* CLEM */
 public class Connexion extends HttpServlet {
 	public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
 		String email = request.getParameter("username" );
