@@ -34,6 +34,8 @@ public class Connexion extends HttpServlet {
         PrintWriter out = response.getWriter();
 		try {
 			out.println(User.isValidUser(dataSource, username, motDePasse));
+			out.println(username);
+			out.println(motDePasse);
 		} catch (SQLException e) {
 			out.println(e);
 		}
