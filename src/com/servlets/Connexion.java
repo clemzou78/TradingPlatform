@@ -36,7 +36,7 @@ public class Connexion extends HttpServlet {
 			
 			if( b.equals("1")) {
 
-
+				
 				HttpSession session = request.getSession();
 				session.setAttribute( "sessionUser", u);		        	
 			}
