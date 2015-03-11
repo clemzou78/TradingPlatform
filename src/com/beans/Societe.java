@@ -61,7 +61,7 @@ public class Societe {
 		String hql = "FROM Societe s";
 		Query query = session.createQuery(hql);
 		List results = query.list();
-		
+		session.close();
 		return results;
 
 	}
