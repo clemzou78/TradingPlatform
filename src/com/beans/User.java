@@ -14,7 +14,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.hibernate.*;
-
+//
 import com.connection.HibernateUtil;
 
 public class User {
