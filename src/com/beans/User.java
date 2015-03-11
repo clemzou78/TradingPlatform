@@ -1,13 +1,21 @@
 package com.beans;
 import javax.sql.*;
 
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+import java.util.List;
+
 import javax.sql.DataSource;
+
+import org.hibernate.*;
+
+import com.connection.HibernateUtil;
 
 public class User {
 
@@ -16,13 +24,23 @@ public class User {
 	private String password;
 	private int dateCreated;
 	private int type;
-	
+
 	public User(){
-		
+
 	}
-	
-	public static String isValidUser(DataSource data,String username,String password) throws SQLException{
-		Connection connection = null;
+
+	public static User recupByName(String username){
+		Session session = HibernateUtil.currentSession();
+		Transaction tx = session.beginTransaction();
+
+		String hql = "FROM User u WHERE u.username = '"+username+"'";
+		Query query = session.createQuery(hql);
+		List results = query.list();
+		return (User) results.get(0);
+	}
+
+	public static String isValidUser(DataSource data,String username,String password) {
+		/*Connection connection = null;
 		connection = data.getConnection();
 		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;
@@ -30,8 +48,22 @@ public class User {
 		resultSet = preparedStatement.executeQuery();
 		resultSet.next();
 		return resultSet.getString(1);		
+
+		 */
+
+
+		try{
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			String hash = digest.digest(password.getBytes("UTF-8")).toString();
+			User u=recupByName(username);
+			if (u.getPassword()==hash) return 1+"";
+			return 0+"";
+		}catch (Exception e) {
+			e.printStackTrace(); 
+		}
+		return 0+"";
 	}
-	
+
 	public String getType(DataSource data,String username,String password) throws SQLException{
 		Connection connection = null;
 		connection = data.getConnection();
@@ -42,13 +74,13 @@ public class User {
 		resultSet.next();
 		return resultSet.getString(1);	
 	}
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 	private int id;
 	public int getId() {
 		return id;
