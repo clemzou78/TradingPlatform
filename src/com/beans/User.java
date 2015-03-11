@@ -28,7 +28,6 @@ public class User {
 		preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM TradingPlatform.user WHERE username='"+username+"' AND password=sha2('"+password+"',256)");
 		resultSet = preparedStatement.executeQuery();
 		resultSet.next();
-		return resultSet.getString(1);
-		
+		return resultSet.getString(1);		
 	}
 }

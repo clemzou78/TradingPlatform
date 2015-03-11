@@ -29,13 +29,11 @@ public class Connexion extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String username = request.getParameter("username" );
+		String username = request.getParameter("name" );
         String motDePasse = request.getParameter("password");
         PrintWriter out = response.getWriter();
 		try {
 			out.println(User.isValidUser(dataSource, username, motDePasse));
-			out.println(username);
-			out.println(motDePasse);
 		} catch (SQLException e) {
 			out.println(e);
 		}

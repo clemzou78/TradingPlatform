@@ -49,7 +49,9 @@
 $(document).ready(function(){
 	$("#formConnect").submit(function(){
 		$.post("connexion",{name:$("input[name='username']").val(),password:$("input[name='password']").val()},function(data){
-			alert(data);
+			if(data==0){
+				$("#error").fadeIn("fast");
+			}
 		});
 		return false;
 	});
@@ -69,6 +71,7 @@ $(document).ready(function(){
                     <input type="password" class="form-control" placeholder="Password" name="password">
                 </div>
                 <button type="submit" class="btn btn-default" style="margin-top:20px">Login</button><br/>
+                <p class="bg-danger" id="error" style="color:red;display:none;margin-top:10px"">Couple login/pass inconnu</p>
                	<a href="#">Not yet registered ?</a>
             </form>
         </div>
