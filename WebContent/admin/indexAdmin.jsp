@@ -32,25 +32,19 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<link rel="stylesheet" type="text/css"
-	href="/DataTables-1.10.5/media/css/jquery.dataTables.css">
-
+<link rel="stylesheet" type="text/css" href="DataTables-1.10.5/media/css/jquery.dataTables.css">
 <!-- jQuery -->
-<script type="text/javascript" charset="utf8"
-	src="/DataTables-1.10.5/media/js/jquery.js"></script>
-
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.5/media/js/jquery.js"></script>
 <!-- DataTables -->
-<script type="text/javascript" charset="utf8"
-	src="/DataTables-1.10.5/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.5/media/js/jquery.dataTables.js"></script>
 </head>
+
+<body>
 <script>
 $(document).ready(function(){
-	$("#table_test").DataTable({
-		"order": [[ 0, 'asc' ], [ 1, 'asc' ]]
-	});
-});</script>
-<body>
-
+	$("#table").DataTable();
+});
+</script>
 	<div id="wrapper">
 
 		<!-- Navigation -->
@@ -186,7 +180,7 @@ $(document).ready(function(){
 
 					<div class="col-lg-12">
 						<div class="table-responsive">
-							<table class="table table-bordered table-hover table-striped" id="table_test">
+							<table id="table" class="table table-bordered table-hover table-striped">
 								<thead>
 									<tr>
 										<th>Page</th>
@@ -233,6 +227,187 @@ $(document).ready(function(){
 										<td>$724.32</td>
 									</tr>
 									<tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr>
+									<tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
+										<td>/blog/post.html</td>
+										<td>1233</td>
+										<td>93.2%</td>
+										<td>$126.34</td>
+									</tr><tr>
 										<td>/blog/post.html</td>
 										<td>1233</td>
 										<td>93.2%</td>
