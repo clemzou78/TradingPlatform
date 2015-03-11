@@ -49,6 +49,7 @@
 $(document).ready(function(){
 	$("#formConnect").submit(function(){
 		$.post("connexion",{name:$("input[name='username']").val(),password:$("input[name='password']").val()},function(data){
+			alert(data);
 			if(data==0){
 				$("#errorMatch").fadeIn("fast");
 				$("#errorMissing").fadeOut("fast");

@@ -24,24 +24,21 @@ public class Connexion extends HttpServlet {
 		String username = request.getParameter("name" );
 		String motDePasse = request.getParameter("password");
 		PrintWriter out = response.getWriter();       
-		
+
 		if (username=="" || motDePasse==""){
 			out.println("2");
 			return;
 		}
-		
+
 		User u=User.recupByName(username);
 		if(u!=null){
-		String b=u.checkPw(motDePasse);
-			
-			if( b.equals("1")) {
-
-				
-				HttpSession session = request.getSession();
-				session.setAttribute( "sessionUser", u);		        	
-			}
+			String b=u.checkPw(motDePasse);
 			out.println(b);
+			if( b.equals("1")) {
+				HttpSession session = request.getSession();
+				session.setAttribute( "sessionUser", u);
+			}
 		}
-		out.println("0");
+		else out.println("0");
 	}
 }
