@@ -8,7 +8,9 @@
             <column name="IDSOCIETE" />
             <generator class="assigned" />
         </id>
-		<many-to-one name="userId" column="idUser" unique="true" not-null="true"/>
+		<property name="idUser" type="int">
+            <column name="IDUSER" />
+        </property>
         <property name="description" type="java.lang.String">
             <column name="DESCRIPTION" />
         </property>

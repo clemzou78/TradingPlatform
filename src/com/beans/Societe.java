@@ -15,7 +15,9 @@ public class Societe {
 	private String description;
 	private String nom;
 	private String mnemo;
-
+	
+	public Societe(){}
+	
 	public int getIdSociete() {
 		return idSociete;
 	}
@@ -29,10 +31,7 @@ public class Societe {
 		this.idUser = idUser;
 	}
 	
-	public User compteDeLaSociete(int idUser){
-	//TODO 
-		return null;
-	}
+	
 	
 	public String getDescription() {
 		return description;
@@ -54,7 +53,7 @@ public class Societe {
 	}
 
 
-	public List getAllSociete(){
+	static public List getAllSociete(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
@@ -65,5 +64,11 @@ public class Societe {
 		return results;
 
 	}
+	
+	public User compteDeLaSociete(int idUser){
+		//TODO 
+			return null;
+		}
+		
 
 }

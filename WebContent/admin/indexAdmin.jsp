@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+ <%@ page import="com.beans.Societe" %>
+ <%@ page import="java.util.*" %>
 <html lang="en">
 
 <head>
@@ -177,242 +179,26 @@ $(document).ready(function(){
 				<!-- /.row -->
 
 				<div class="row" style="margin-top: 10px">
-
+					<% List listSociete=Societe.getAllSociete(); %>
 					<div class="col-lg-12">
 						<div class="table-responsive">
 							<table id="table" class="table table-bordered table-hover table-striped">
 								<thead>
 									<tr>
-										<th>Page</th>
-										<th>Visits</th>
-										<th>% New Visits</th>
-										<th>Revenue</th>
+										<th>Mnémo</th>
+										<th>Société</th>
+										<th>Description</th>
 									</tr>
 								</thead>
 								<tbody>
+									<% for(int i=0;i<listSociete.size();i++){%>
 									<tr>
-										<td>/index.html</td>
-										<td>1265</td>
-										<td>32.3%</td>
-										<td>$321.33</td>
+										<td><%= ((Societe)listSociete.get(i)).getMnemo() %></td>
+										<td><%= ((Societe)listSociete.get(i)).getNom()%></td>
+										<td><%= ((Societe)listSociete.get(i)).getDescription()%></td>
 									</tr>
-									<tr>
-										<td>/about.html</td>
-										<td>261</td>
-										<td>33.3%</td>
-										<td>$234.12</td>
-									</tr>
-									<tr>
-										<td>/sales.html</td>
-										<td>665</td>
-										<td>21.3%</td>
-										<td>$16.34</td>
-									</tr>
-									<tr>
-										<td>/blog.html</td>
-										<td>9516</td>
-										<td>89.3%</td>
-										<td>$1644.43</td>
-									</tr>
-									<tr>
-										<td>/404.html</td>
-										<td>23</td>
-										<td>34.3%</td>
-										<td>$23.52</td>
-									</tr>
-									<tr>
-										<td>/services.html</td>
-										<td>421</td>
-										<td>60.3%</td>
-										<td>$724.32</td>
-									</tr>
-									<tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr>
-									<tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr><tr>
-										<td>/blog/post.html</td>
-										<td>1233</td>
-										<td>93.2%</td>
-										<td>$126.34</td>
-									</tr>
+									<%} %>
+									
 								</tbody>
 							</table>
 						</div>
