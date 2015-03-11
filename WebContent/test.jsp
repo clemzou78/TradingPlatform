@@ -22,7 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+	<script src="js/jquery.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -45,13 +45,22 @@
 	}
 	</style>
 </head>
-
+<script>
+$(document).ready(function(){
+	$("#formConnect").submit(function(){
+		$.post("connexion",{name:$("input[name='username']").val(),password:$("input[name='password']").val()},function(data){
+			alert(data);
+		});
+		return false;
+	});
+});
+</script>
 <body style="width:100%;height:100%;display:block;margin:0;">
 <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
         	<h1>Welcome on The Trading Platform</h1>
-            <form role="form" method="post" action="connexion">
+            <form role="form" id="formConnect" method="post" action="#">
                 <div class="form-group input-group" style="width:10%;margin:auto">
                     <input type="text" class="form-control" placeholder="Username" name="username">
                 </div>
