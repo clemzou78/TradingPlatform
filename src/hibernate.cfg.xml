@@ -12,5 +12,6 @@
         
          <!-- mapping files -->
         <mapping resource="com/beans/User.hbm.xml"/>
+        <mapping resource="com/beans/Societe.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
