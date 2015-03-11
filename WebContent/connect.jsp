@@ -52,6 +52,7 @@ $(document).ready(function(){
 			if(data==0){
 				$("#error").fadeIn("fast");
 			}
+			else window.location.href="index.jsp";
 		});
 		return false;
 	});

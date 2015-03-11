@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.beans.User;
@@ -18,7 +19,6 @@ import com.beans.User;
 // DEUXIEME TEST
 /* CLEM */
 public class Connexion extends HttpServlet {
-	
 	public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
 		DataSource dataSource = null;
 		InitialContext initialContext = null;
@@ -31,8 +31,16 @@ public class Connexion extends HttpServlet {
 		}
 		String username = request.getParameter("name" );
         String motDePasse = request.getParameter("password");
-        PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();       
 		try {
+			 if( User.isValidUser(dataSource, username, motDePasse).equals("1")) {
+		        	User u=new User();
+		        	u.setUsername(username);
+		        	u.setPassword(motDePasse);
+		        	u.setType(Integer.parseInt(u.getType(dataSource,username,motDePasse)));
+		        	HttpSession session = request.getSession();
+		        	session.setAttribute( "sessionUser", u);		        	
+		    }
 			out.println(User.isValidUser(dataSource, username, motDePasse));
 		} catch (SQLException e) {
 			out.println(e);
