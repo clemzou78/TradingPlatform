@@ -14,14 +14,13 @@
     <servlet-class>com.servlets.Test</servlet-class>
   </servlet>
   <servlet>
-	<servlet-name>Deconnexion</servlet-name>
-	<servlet-class>com.servlets.Deconnexion</servlet-class>
-</servlet>
-<servlet-mapping>
-	<servlet-name>Deconnexion</servlet-name>
-	<url-pattern>/deconnexion</url-pattern>
-</servlet-mapping>
-
+    <servlet-name>Deconnexion</servlet-name>
+    <servlet-class>com.servlets.Deconnexion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Deconnexion</servlet-name>
+    <url-pattern>/deconnexion</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Test</servlet-name>
     <url-pattern>/toto</url-pattern>
@@ -33,6 +32,15 @@
   <servlet-mapping>
     <servlet-name>Connexion</servlet-name>
     <url-pattern>/connexion</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SocieteAdd</servlet-name>
+    <servlet-class>com.servlets.SocieteAdd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SocieteAdd</servlet-name>
+    <url-pattern>/admin/SocieteAdd</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>AdminFilter</filter-name>

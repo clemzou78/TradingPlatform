@@ -91,7 +91,7 @@
                 <div class="row">
                     <div class="col-lg-6">
 
-                        <form role="form">
+                        <form role="form" action="SocieteAdd" method="post">
 
                             <div class="form-group">
                                 <label>Nom</label>
