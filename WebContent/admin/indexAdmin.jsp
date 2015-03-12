@@ -19,8 +19,6 @@
 
 
 
-<!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
 
 <!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -49,6 +47,10 @@
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8"
 	src="../DataTables-1.10.5/media/js/jquery.dataTables.js"></script>
+	
+<!-- Bootstrap Core JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
+
 </head>
 
 <body>

@@ -49,7 +49,6 @@
 $(document).ready(function(){
 	$("#formConnect").submit(function(){
 		$.post("connexion",{name:$("input[name='username']").val(),password:$("input[name='password']").val()},function(data){
-			alert(data);
 			if(data==0){
 				$("#errorMatch").fadeIn("fast");
 				$("#errorMissing").fadeOut("fast");
@@ -62,25 +61,74 @@ $(document).ready(function(){
 		});
 		return false;
 	});
+	$("#notLoggedId").click(function(){
+		$("#divButton").fadeIn("slow");
+	});
+
+	$("#investButton").click(function(){
+		$("#welcomemsg").fadeOut("fast");
+		$("#formButton").fadeOut("fast");
+		$("#divButton").fadeOut("fast",function(){
+			$("#divButton").height("500px");
+			$("#divButton").slideDown("slow");
+			$("#divButton").html($("#form1").html());
+		});
+		
+		return false;
+	});
+	
+	
 });
 </script>
 <body style="width:100%;height:100%;display:block;margin:0;">
 <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-        	<h1>Welcome on The Trading Platform</h1>
+        	<h1 id="welcomemsg">Welcome on The Trading Platform</h1>
             <form role="form" id="formConnect" method="post" action="#">
-                <div class="form-group input-group" style="width:10%;margin:auto">
-                    <input type="text" class="form-control" placeholder="Username" name="username">
+            	<div id="formButton">
+	                <div class="form-group input-group" style="width:10%;margin:auto">
+	                    <input type="text" class="form-control" placeholder="Username" name="username">
+	                </div>
+	
+	                <div class="form-group input-group" style="width:10%;margin:auto">
+	                    <input type="password" class="form-control" placeholder="Password" name="password">
+	                </div>
+	                  <button type="submit" class="btn btn-default" style="margin-top:20px">Login</button><br/>
+		                <p class="bg-danger" id="errorMatch" style="color:red;display:none;margin-top:10px"">Couple login/pass inconnu</p>
+		                <p class="bg-danger" id="errorMissing" style="color:red;display:none;margin-top:10px"">Veuillez renseigner les champs</p>
+		               	<a href="#" id="notLoggedId" style="margin-top:20px">Pas encore inscrit ?</a>
                 </div>
-
-                <div class="form-group input-group" style="width:10%;margin:auto">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
-                </div>
-                <button type="submit" class="btn btn-default" style="margin-top:20px">Login</button><br/>
-                <p class="bg-danger" id="errorMatch" style="color:red;display:none;margin-top:10px"">Couple login/pass inconnu</p>
-                <p class="bg-danger" id="errorMissing" style="color:red;display:none;margin-top:10px"">Veuillez renseigner les champs</p>
-               	<a href="#">Not yet registered ?</a>
+              
+               	<div class="well" id="divButton" style="margin-auto;margin-top:10px;display:none;">            
+               	<b style="font-size:1.2em">Je souhaite m'inscrire en tant que : </b><br/><br/>
+               	<button id="investButton" class="btn btn-success" style="width:150px">Investisseur</button> <button style="width:150px" class="btn btn-success">Société</button>
+               	</div>
+               	<div id="form1" style="display:none">
+               	<form role="form" method="post" action="#">
+               		<div class="form-group input-group" style="width:10%;margin:auto;margin-top:20px">
+               			<label>Nom *</label>
+	                    <input type="text" class="form-control" placeholder="Nom" name="username">
+	                </div>
+	                <div class="form-group input-group" style="width:10%;margin:auto;margin-top:20px">
+               			<label>Prenom *</label>
+	                    <input type="text" class="form-control" placeholder="Prénom" name="username">
+	                </div>
+	                <div class="form-group input-group" style="width:10%;margin:auto;margin-top:20px">
+               			<label>Email *</label>
+	                    <input type="text" class="form-control" placeholder="Email" name="username">
+	                </div>
+	                <div class="form-group input-group" style="width:10%;margin:auto;margin-top:20px">
+	                	<label>Mot de passe *</label>
+	                    <input type="password" class="form-control" placeholder="Mot de passe" name="password">
+	                </div>
+	                <div class="form-group input-group" style="width:10%;margin:auto;margin-top:20px">
+	                	<label>Confirmez mot de passe *</label>
+	                    <input type="password" class="form-control" placeholder="Mot de passe" name="confirmPassword">
+	                </div>
+	                <button type="submit" class="btn btn-success" style="margin-top:20px">S'inscrire</button>
+	             </div>
+               	</form>
             </form>
         </div>
     </header>
