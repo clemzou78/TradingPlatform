@@ -5,7 +5,8 @@
 <jsp:include page="connect.jsp"></jsp:include>
 <%} else{ User u=(User)session.getAttribute("sessionUser");
 	if(u.getType()==1){
-%>
-<jsp:include page="admin/indexAdmin.jsp"></jsp:include>
-<%}
-} %>
+		String site = "admin/indexAdmin.jsp" ;
+		response.setStatus(response.SC_MOVED_TEMPORARILY);
+		response.setHeader("Location", site); 
+}
+	}%>

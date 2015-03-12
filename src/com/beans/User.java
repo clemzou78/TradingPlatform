@@ -1,5 +1,6 @@
 package com.beans;
 import javax.sql.*;
+
 import org.apache.*;
 
 import java.security.MessageDigest;
@@ -15,6 +16,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.hibernate.*;
+
 //
 import com.connection.HibernateUtil;
 
@@ -116,6 +118,18 @@ public class User {
 	    } catch(Exception ex){
 	       throw new RuntimeException(ex);
 	    }
+	}
+	
+	static public List getAllUsers(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+
+		String hql = "FROM User u";
+		Query query = session.createQuery(hql);
+		List results = query.list();
+		session.close();
+		return results;
+
 	}
 
 

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<%@ page import="com.beans.Societe"%>
 <%@ page import="com.beans.User"%>
 <%@ page import="java.util.*"%>
 <%
@@ -16,12 +15,11 @@
 <meta name="author" content="">
 
 <title>SB Admin - Bootstrap Admin Template</title>
-
+<!-- DataTables CSS -->
 
 
 <!-- Bootstrap Core JavaScript -->
 <script src="../js/bootstrap.min.js"></script>
-
 <!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -92,10 +90,10 @@
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav side-nav">
-					<li class="active"><a href="indexAdmin.jsp"><i
+					<li><a href="indexAdmin.jsp"><i
 							class="fa fa-fw fa-building"></i> Sociétés</a></li>
-					<li><a href="listeUsers.jsp"> <i class="fa fa-fw fa-user"></i>
-							Utilisateurs
+					<li class="'active"><a href="listeUsers.jsp"> <i
+							class="fa fa-fw fa-user"></i> Utilisateurs
 					</a></li>
 				</ul>
 			</div>
@@ -110,9 +108,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 
-						<h1 class="page-header">Administration des sociétés</h1>
-						<a class="btn btn-success" href="societeAdd.jsp">Créer une
-							société</a>
+						<h1 class="page-header">Liste des utilisateurs</h1>
 
 						<form role="form" id="formRegisterSociety" style="display: none"
 							method="post" action="#">
@@ -144,7 +140,7 @@
 
 				<div class="row" style="margin-top: 10px">
 					<%
-						List listSociete = Societe.getAllSociete();
+						List listUsers = User.getAllUsers();
 					%>
 					<div class="col-lg-12">
 						<div class="table-responsive">
@@ -152,19 +148,25 @@
 								class="table table-bordered table-hover table-striped">
 								<thead>
 									<tr>
-										<th>Mnémo</th>
-										<th>Société</th>
-										<th>Description</th>
+										<th>Username</th>
+										<th>Type</th>
 									</tr>
 								</thead>
 								<tbody>
 									<%
-										for (int i = 0; i < listSociete.size(); i++) {
-											String description=((Societe) listSociete.get(i)).getDescription().substring(0,250)+"...";%>
+										for (int i = 0; i < listUsers.size(); i++) {
+											int type = ((User) listUsers.get(i)).getType();
+											String typeStr;
+											if (type == 1)
+												typeStr = "Admin";
+											else if (type == 2)
+												typeStr = "Investisseur";
+											else
+												typeStr = "Societe";
+									%>
 									<tr>
-										<td><%=((Societe) listSociete.get(i)).getMnemo()%></td>
-										<td><%=((Societe) listSociete.get(i)).getNom()%></td>
-										<td><%=description %></td>
+										<td><%=((User) listUsers.get(i)).getUsername()%></td>
+										<td><%=typeStr%></td>
 									</tr>
 									<%
 										}
