@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,6 +19,7 @@ public class Societe {
 	private String description;
 	private String nom;
 	private String mnemo;
+	private boolean validate;
 	
 	public Societe(){
 		
@@ -64,7 +67,14 @@ public class Societe {
 	public void setMnemo(String mnemo) {
 		this.mnemo = mnemo;
 	}
+	
+	private boolean isValidate() {
+		return validate;
+	}
 
+	private void setValidate(boolean validate) {
+		this.validate = validate;
+	}
 
 	public static  List getAllSociete(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -92,7 +102,7 @@ public class Societe {
 		s.setDescription(description);
 		s.setMnemo(mnemo);
 		s.setNom(nom);
-		
+		s.setValidate(true);
 		s.setUserSociety(u);
 		session.save(s);
 		tx.commit();
@@ -104,6 +114,24 @@ public class Societe {
 		//TODO 
 			return null;
 		}
+
+	public static Societe createSocieteStandBy(String societe, String mnemo,
+			String description, String mail) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Societe s=new Societe();
+		s.setDescription(description);
+		s.setMnemo(mnemo);
+		s.setNom(societe);
+		s.setValidate(false);
+		session.save(s);
+		tx.commit();
+		
+		return s;
+	}
+
+	
 
 
 		

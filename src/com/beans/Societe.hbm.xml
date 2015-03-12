@@ -18,6 +18,11 @@
         <property name="mnemo" type="java.lang.String" unique="true">
             <column name="MNEMO" />
         </property>
+        
+        <property name="validate" type="boolean">
+            <column name="VALIDATE" />
+        </property>
+        
     </class>
 </hibernate-mapping>
 
