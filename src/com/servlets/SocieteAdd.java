@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.beans.Societe;
+
 /**
  * Servlet implementation class SocieteAdd
  */
@@ -38,9 +40,10 @@ public class SocieteAdd extends HttpServlet {
 		String nom = request.getParameter("nom" );
 		String mnemo = request.getParameter("mnemo");
 		String description = request.getParameter("description");
+		Societe.createSociete(nom, mnemo, description);
 		PrintWriter out = response.getWriter();
 		out.println(nom);
-		out.print(mnemo);
+		out.println(mnemo);
 		out.println(description);
 	}
 

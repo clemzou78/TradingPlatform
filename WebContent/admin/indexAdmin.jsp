@@ -160,7 +160,8 @@
 								<tbody>
 									<%
 										for (int i = 0; i < listSociete.size(); i++) {
-											String description=((Societe) listSociete.get(i)).getDescription().substring(0,250)+"...";%>
+											String chaine=((Societe) listSociete.get(i)).getDescription();
+											String description=chaine.substring(0,(chaine.length()<250?chaine.length():250))+"...";%>
 									<tr>
 										<td><%=((Societe) listSociete.get(i)).getMnemo()%></td>
 										<td><%=((Societe) listSociete.get(i)).getNom()%></td>

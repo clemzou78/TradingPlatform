@@ -20,14 +20,17 @@ import org.hibernate.*;
 //
 import com.connection.HibernateUtil;
 
+
+
+
 public class User {
 
-
+	private int id;
 	private String username;
 	private String password;
 	private int dateCreated;
-	private int type;
-	private int id;
+	private UserType type;
+	
 	
 	public User(){
 
@@ -65,15 +68,14 @@ public class User {
 		this.dateCreated = dateCreated;
 	}
 
-	public int getType() {
+	public UserType getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(UserType type) {
 		this.type = type;
 	}
 
-	
 
 	public static User recupByName(String username){
 		Session session = HibernateUtil.getSessionFactory().openSession();

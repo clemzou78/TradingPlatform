@@ -8,7 +8,7 @@
             <column name="idUser" />
             <generator class="assigned" />
         </id>
-        <property name="username" type="java.lang.String">
+        <property name="username" type="java.lang.String" unique="true">
             <column name="USERNAME" />
         </property>
         <property name="password" type="java.lang.String">
@@ -17,8 +17,11 @@
         <property name="dateCreated" type="int">
             <column name="DATECREATED" />
         </property>
-        <property name="type" type="int">
-            <column name="TYPE" />
+        <property name="type" column="TYPE">
+        	<type name="org.hibernate.type.EnumType">
+		        <param name="enumClass">com.beans.UserType</param>
+		    </type>
+
         </property>
     </class>
     

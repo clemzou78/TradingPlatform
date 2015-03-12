@@ -13,7 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.beans.User;
+import com.beans.UserType;
+import com.connection.HibernateUtil;
 /* TEST GIT */
 // TEST MOI
 // DEUXIEME TEST
@@ -29,6 +34,10 @@ public class Connexion extends HttpServlet {
 			out.println("2");
 			return;
 		}
+		
+		Session session2 = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session2.beginTransaction();
+		
 
 		User u=User.recupByName(username);
 		if(u!=null){

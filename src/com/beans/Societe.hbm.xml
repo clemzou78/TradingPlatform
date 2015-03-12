@@ -15,7 +15,7 @@
         <property name="nom" type="java.lang.String">
             <column name="NOM" />
         </property>
-        <property name="mnemo" type="java.lang.String">
+        <property name="mnemo" type="java.lang.String" unique="true">
             <column name="MNEMO" />
         </property>
     </class>

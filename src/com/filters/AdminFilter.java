@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.beans.User;
+import com.beans.UserType;
 
 public class AdminFilter implements Filter {
 	public static final String ACCES_PUBLIC     = "/index.jsp";
@@ -38,7 +39,10 @@ public class AdminFilter implements Filter {
 	        } else {
 	        	User u=(User) session.getAttribute("sessionUser");
 	            /* Affichage de la page restreinte */
-	            if(u.getType()==1) chain.doFilter( request, response );
+	            if(u.getType()==UserType.Administrateur) {
+	            	
+	            	chain.doFilter( request, response );
+	            }
 	        }
     }
 
