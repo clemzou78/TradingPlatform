@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.beans.Societe;
 import com.util.RandomStringGenerator;
@@ -42,15 +43,14 @@ public class SocieteAdd extends HttpServlet {
 		String mnemo = request.getParameter("mnemo");
 		String description = request.getParameter("description");
 		String pass=RandomStringGenerator.generateRandomString(10, RandomStringGenerator.Mode.ALPHANUMERIC);
+				
+		Societe soc=Societe.createSociete(nom, mnemo, description,pass);
 		
+		HttpSession s=request.getSession();
+		s.setAttribute("societe", soc);
+		s.setAttribute("pass",pass);
+		request.getRequestDispatcher("confirmSocieteAdd.jsp").forward(request, response);
 		
-		
-		Societe.createSociete(nom, mnemo, description,pass);
-		
-		PrintWriter out = response.getWriter();
-		out.println(nom);
-		out.println(mnemo);
-		out.println(description);
 	}
 
 }

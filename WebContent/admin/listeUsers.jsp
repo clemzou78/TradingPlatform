@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page import="com.beans.User"%>
+<%@ page import="com.beans.UserType"%>
 <%@ page import="java.util.*"%>
 <%
 	User u = (User) session.getAttribute("sessionUser");
@@ -155,18 +156,11 @@
 								<tbody>
 									<%
 										for (int i = 0; i < listUsers.size(); i++) {
-											int type = ((User) listUsers.get(i)).getType();
-											String typeStr;
-											if (type == 1)
-												typeStr = "Admin";
-											else if (type == 2)
-												typeStr = "Investisseur";
-											else
-												typeStr = "Societe";
+											UserType type = ((User) listUsers.get(i)).getType();
 									%>
 									<tr>
 										<td><%=((User) listUsers.get(i)).getUsername()%></td>
-										<td><%=typeStr%></td>
+										<td><%=type.toString()%></td>
 									</tr>
 									<%
 										}
