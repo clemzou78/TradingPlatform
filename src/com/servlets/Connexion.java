@@ -20,31 +20,25 @@ import com.beans.User;
 /* CLEM */
 public class Connexion extends HttpServlet {
 	public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
-		DataSource dataSource = null;
-		InitialContext initialContext = null;
-		try {
-			initialContext = new InitialContext();
-			dataSource = (DataSource) initialContext.lookup("java:jboss/datasources/DsMysql");
-		} catch (NamingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
 		String username = request.getParameter("name" );
-        String motDePasse = request.getParameter("password");
-        PrintWriter out = response.getWriter();       
-		try {
-			 if( User.isValidUser(dataSource, username, motDePasse).equals("1")) {
-		        	User u=new User();
-		        	u.setUsername(username);
-		        	u.setPassword(motDePasse);
-		        	u.setType(Integer.parseInt(u.getType(dataSource,username,motDePasse)));
-		        	HttpSession session = request.getSession();
-		        	session.setAttribute( "sessionUser", u);		        	
-		    }
-			out.println(User.isValidUser(dataSource, username, motDePasse));
-		} catch (SQLException e) {
-			out.println(e);
+		String motDePasse = request.getParameter("password");
+		PrintWriter out = response.getWriter();       
+
+		if (username=="" || motDePasse==""){
+			out.println("2");
+			return;
 		}
-		
+
+		User u=User.recupByName(username);
+		if(u!=null){
+			String b=u.checkPw(motDePasse);
+			out.println(b);
+			if( b.equals("1")) {
+				HttpSession session = request.getSession();
+				session.setAttribute( "sessionUser", u);
+			}
+		}
+		else out.println("0");
 	}
 }

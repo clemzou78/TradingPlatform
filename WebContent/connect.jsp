@@ -49,8 +49,14 @@
 $(document).ready(function(){
 	$("#formConnect").submit(function(){
 		$.post("connexion",{name:$("input[name='username']").val(),password:$("input[name='password']").val()},function(data){
+			alert(data);
 			if(data==0){
-				$("#error").fadeIn("fast");
+				$("#errorMatch").fadeIn("fast");
+				$("#errorMissing").fadeOut("fast");
+			}
+			else if(data==2){
+				$("#errorMissing").fadeIn("fast");
+				$("#errorMatch").fadeOut("fast");
 			}
 			else window.location.href="index.jsp";
 		});
@@ -72,7 +78,8 @@ $(document).ready(function(){
                     <input type="password" class="form-control" placeholder="Password" name="password">
                 </div>
                 <button type="submit" class="btn btn-default" style="margin-top:20px">Login</button><br/>
-                <p class="bg-danger" id="error" style="color:red;display:none;margin-top:10px"">Couple login/pass inconnu</p>
+                <p class="bg-danger" id="errorMatch" style="color:red;display:none;margin-top:10px"">Couple login/pass inconnu</p>
+                <p class="bg-danger" id="errorMissing" style="color:red;display:none;margin-top:10px"">Veuillez renseigner les champs</p>
                	<a href="#">Not yet registered ?</a>
             </form>
         </div>
