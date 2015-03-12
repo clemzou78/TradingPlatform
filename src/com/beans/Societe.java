@@ -1,5 +1,6 @@
 package com.beans;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.util.List;
 
@@ -77,23 +78,25 @@ public class Societe {
 
 	}
 	
-	public static Societe createSociete(String nom, String mnemo, String description){ // avec un compte associé
+	public static Societe createSociete(String nom, String mnemo, String description, String pass){ // avec un compte associé
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
+		
+		User u=new User();
+		u.setUsername(mnemo);
+		u.setType(UserType.Societe);
+		u.setPassword(User.sha256(pass));
+		session.save(u);
+
 		Societe s=new Societe();
 		s.setDescription(description);
 		s.setMnemo(mnemo);
 		s.setNom(nom);
-		User u=new User();
-		u.setUsername(mnemo);
-		u.setType(UserType.Societe);
-		String passhash=RandomStringGenerator.generateRandomString(10, RandomStringGenerator.Mode.ALPHANUMERIC);
-		u.setPassword(User.sha256(passhash));
-		session.save(u);
-		session.flush();
+		
 		s.setUserSociety(u);
 		session.save(s);
 		tx.commit();
+		
 		return s;
 	}
 	

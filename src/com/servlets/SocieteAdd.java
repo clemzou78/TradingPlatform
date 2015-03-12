@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.beans.Societe;
+import com.util.RandomStringGenerator;
 
 /**
  * Servlet implementation class SocieteAdd
@@ -40,7 +41,12 @@ public class SocieteAdd extends HttpServlet {
 		String nom = request.getParameter("nom" );
 		String mnemo = request.getParameter("mnemo");
 		String description = request.getParameter("description");
-		Societe.createSociete(nom, mnemo, description);
+		String pass=RandomStringGenerator.generateRandomString(10, RandomStringGenerator.Mode.ALPHANUMERIC);
+		
+		
+		
+		Societe.createSociete(nom, mnemo, description,pass);
+		
 		PrintWriter out = response.getWriter();
 		out.println(nom);
 		out.println(mnemo);

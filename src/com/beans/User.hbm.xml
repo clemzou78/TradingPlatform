@@ -6,7 +6,7 @@
     <class name="com.beans.User" table="USER">
         <id name="id" type="int">
             <column name="idUser" />
-            <generator class="assigned" />
+            <generator class="increment">  </generator>
         </id>
         <property name="username" type="java.lang.String" unique="true">
             <column name="USERNAME" />
