@@ -34,6 +34,15 @@
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>InvestissorAdd</servlet-name>
+    <servlet-class>com.servlets.InvestissorAdd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InvestissorAdd</servlet-name>
+    <url-pattern>/InvestissorAdd</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>SocieteAdd</servlet-name>
     <servlet-class>com.servlets.SocieteAdd</servlet-class>
