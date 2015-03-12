@@ -8,9 +8,7 @@
             <column name="IDSOCIETE" />
             <generator class="assigned" />
         </id>
-		<property name="idUser" type="int">
-            <column name="IDUSER" />
-        </property>
+        <many-to-one name="userSociety"  column="IDUSER" unique="true" class="com.beans.User" lazy="proxy"/>
         <property name="description" type="java.lang.String">
             <column name="DESCRIPTION" />
         </property>

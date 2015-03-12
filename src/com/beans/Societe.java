@@ -11,12 +11,21 @@ import com.connection.HibernateUtil;
 
 public class Societe {
 	private int idSociete; 
-	private int idUser;
+	private User userSociety;
 	private String description;
 	private String nom;
 	private String mnemo;
 	
-	public Societe(){}
+	public Societe(){
+		
+	}
+	
+	public Societe(String description, String nom, String mnemo){
+		this.description=description;
+		this.nom=nom;
+		this.mnemo=mnemo;
+
+	}
 	
 	public int getIdSociete() {
 		return idSociete;
@@ -24,14 +33,16 @@ public class Societe {
 	public void setIdSociete(int idSociete) {
 		this.idSociete = idSociete;
 	}
-	public int getIdUser() {
-		return idUser;
+
+	public User getUserSociety() {
+		return userSociety;
 	}
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+
+	public void setUserSociety(User userSociety) {
+		this.userSociety = userSociety;
 	}
 	
-	
+
 	
 	public String getDescription() {
 		return description;
@@ -69,6 +80,8 @@ public class Societe {
 		//TODO 
 			return null;
 		}
+
+
 		
 
 }

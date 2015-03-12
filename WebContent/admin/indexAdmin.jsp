@@ -44,8 +44,16 @@
 <body>
 <script>
 $(document).ready(function(){
-	$("#table").DataTable();
+	//$("#table").DataTable();
 });
+</script>
+
+
+<script>
+function fade()
+	 {
+		$("#formRegisterSociety").fadeIn("fast");
+};
 </script>
 	<div id="wrapper">
 
@@ -172,8 +180,23 @@ $(document).ready(function(){
 					<div class="col-lg-12">
 
 						<h1 class="page-header">Administration des sociétés</h1>
-						<a class="btn btn-success" href="Societe_create.html">Créer
-							une société</a>
+						<button class="btn btn-success" type="button"  onclick="javascript:fade();">Créer une société</button>
+						
+						<form role="form" id="formRegisterSociety" style="display:none" method="post" action="#">
+						<br>
+			                <div class="form-group input-group" style="width:100%;margin:auto">
+			                    <input type="text" class="form-control" placeholder="Societe" name="societe">
+			                </div>
+						<br>
+			                <div class="form-group input-group" style="width:100%;margin:auto">
+			                    <input type="text" class="form-control" placeholder="Mnemo" name="Mnemo">
+			                </div>
+			             <br>
+			                <div class="form-group input-group" style="width:100%;margin:auto">
+			                    <input type="text" class="form-control" placeholder="Description" name="description">
+			                </div>
+			                <button type="submit" class="btn btn-default" style="margin-top:20px">Submit</button><br/>
+			            </form>
 					</div>
 				</div>
 				<!-- /.row -->
