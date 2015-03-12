@@ -20,6 +20,7 @@ public class Societe {
 	private String nom;
 	private String mnemo;
 	private boolean validate;
+	private String email;
 	
 	public Societe(){
 		
@@ -76,6 +77,14 @@ public class Societe {
 		this.validate = validate;
 	}
 
+	private String getEmail() {
+		return email;
+	}
+
+	private void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public static  List getAllSociete(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
@@ -124,12 +133,15 @@ public class Societe {
 		s.setDescription(description);
 		s.setMnemo(mnemo);
 		s.setNom(societe);
+		s.setEmail(mail);
 		s.setValidate(false);
 		session.save(s);
 		tx.commit();
 		
 		return s;
 	}
+
+
 
 	
 

@@ -6,7 +6,7 @@
     <class name="com.beans.Investisseur" table="INVESTISSEUR">
         <id name="idInvestisseur" type="int" access="field">
             <column name="IDINVESTISSEUR" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="nom" type="java.lang.String">
             <column name="NOM" />

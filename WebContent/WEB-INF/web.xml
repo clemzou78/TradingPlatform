@@ -51,6 +51,17 @@
     <servlet-name>SocieteAdd</servlet-name>
     <url-pattern>/admin/SocieteAdd</url-pattern>
   </servlet-mapping>
+  
+  
+    <servlet>
+    <servlet-name>SocieteAddAccueil</servlet-name>
+    <servlet-class>com.servlets.SocieteAddAccueil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SocieteAddAccueil</servlet-name>
+    <url-pattern>/SocieteAddAccueil</url-pattern>
+  </servlet-mapping>
+  
   <filter>
     <filter-name>AdminFilter</filter-name>
     <filter-class>com.filters.AdminFilter</filter-class>
