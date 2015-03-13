@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13 mars 2015 23:37:09 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.beans.contrat.ContratEnchere" table="CONTRATENCHERE">
+        <id name="idContratEnchere" type="int" access="field">
+            <column name="IDCONTRATENCHERE" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="actif" class="com.beans.contrat.Actif" access="field" fetch="join">
+            <column name="ACTIF" />
+        </many-to-one>
+        <list name="propEnc" inverse="false" table="PROPOSITIONENCHERE" lazy="true" access="field">
+            <key>
+                <column name="IDCONTRATENCHERE" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="com.beans.contrat.PropositionEnchere" />
+        </list>
+        <property name="typeN" access="field">
+            <column name="TYPEN" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">com.beans.contrat.NegoType</param>
+            </type>
+        </property>
+        <property name="dateFin" type="java.sql.Date" access="field">
+            <column name="DATEFIN" />
+        </property>
+        <many-to-one name="proposeUser" class="com.beans.User" access="field" fetch="join">
+            <column name="PROPOSEUSER" />
+        </many-to-one>
+        <many-to-one name="accepteUser" class="com.beans.User" access="field" fetch="join">
+            <column name="ACCEPTEUSER" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

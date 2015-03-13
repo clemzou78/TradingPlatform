@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13 mars 2015 22:55:27 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <joined-subclass name="com.beans.contrat.StockOption" extends="com.beans.contrat.Actif">
+        <property name="maturite" type="java.sql.Date" access="field">
+            <column name="MATURITE" />
+        </property>
+        <property name="strike" type="double" access="field">
+            <column name="STRIKE" />
+        </property>
+    </joined-subclass>
+</hibernate-mapping>
