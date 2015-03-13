@@ -42,9 +42,9 @@ public class SocieteAdd extends HttpServlet {
 		String nom = request.getParameter("nom" );
 		String mnemo = request.getParameter("mnemo");
 		String description = request.getParameter("description");
+		String email=request.getParameter("email");
 		String pass=RandomStringGenerator.generateRandomString(10, RandomStringGenerator.Mode.ALPHANUMERIC);
-				
-		Societe soc=Societe.createSociete(nom, mnemo, description,pass);
+		Societe soc=Societe.createSociete(nom, mnemo, description,email,pass);
 		
 		HttpSession s=request.getSession();
 		s.setAttribute("societe", soc);

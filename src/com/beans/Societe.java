@@ -97,12 +97,12 @@ public class Societe {
 
 	}
 
-	public static Societe createSociete(String nom, String mnemo, String description, String pass){ // avec un compte associé
+	public static Societe createSociete(String nom, String mnemo, String description, String email,String pass){ // avec un compte associé
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
 		User u=new User();
-		u.setUsername(mnemo);
+		u.setUsername(email);
 		u.setType(UserType.Societe);
 		u.setPassword(User.sha256(pass));
 		session.save(u);
@@ -110,7 +110,9 @@ public class Societe {
 		Societe s=new Societe();
 		s.setDescription(description);
 		s.setMnemo(mnemo);
+		
 		s.setNom(nom);
+		s.setEmail(email);
 		s.setValidate(true);
 		s.setUserSociety(u);
 		session.save(s);

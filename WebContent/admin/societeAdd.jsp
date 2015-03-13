@@ -95,26 +95,22 @@
 
                             <div class="form-group">
                                 <label>Nom</label>
-                                <input type="text" class="form-control" name="nom"/>
+                                <input type="text" class="form-control" name="nom" required="required"/>
                             </div>
 
                             <div class="form-group">
                                 <label>Mnémo</label>
-                                <input type="text" class="form-control" name="mnemo"/>
+                                <input type="text" class="form-control" name="mnemo" required="required"/>
                             </div>
                             
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="description" rows="10"></textarea>
+                                <textarea class="form-control" name="description" rows="10" required="required"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label>Compte utilisateur</label>
-                                <input class="form-control" name="username"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Mot de passe</label>
-                                <input class="form-control" type="password" name="password"/>
+                                <label>Email</label>
+                                <input class="form-control" type="email" name="email"/>
                             </div>
 
                           
