@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@ page import="com.beans.Societe"%>
 <%@ page import="com.beans.User"%>
+<%@ page import="com.beans.UserType"%>
 <%@ page import="java.util.*"%>
 <%
 	User u = (User) session.getAttribute("sessionUser");
@@ -16,10 +16,11 @@
 <meta name="author" content="">
 
 <title>SB Admin - Bootstrap Admin Template</title>
+<!-- DataTables CSS -->
 
 
-
-
+<!-- Bootstrap Core JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
 <!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -47,23 +48,12 @@
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8"
 	src="../DataTables-1.10.5/media/js/jquery.dataTables.js"></script>
-	
-<!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
 	<script>
 		$(document).ready(function() {
 			$("#table").DataTable();
-			$("#table2").DataTable();
-
-			$('#myTab a').click(function (e) {
-				  e.preventDefault()
-				  $(".tab-pane").hide();
-				  $($(this).attr("href")).fadeIn("fast");
-				})
 		});
 		/*
 		 function fade()
@@ -101,10 +91,10 @@
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav side-nav">
-					<li class="active"><a href="indexAdmin.jsp"><i
+					<li><a href="indexAdmin.jsp"><i
 							class="fa fa-fw fa-building"></i> Sociétés</a></li>
-					<li><a href="listeUsers.jsp"> <i class="fa fa-fw fa-user"></i>
-							Utilisateurs
+					<li class="'active"><a href="listeUsers.jsp"> <i
+							class="fa fa-fw fa-user"></i> Utilisateurs
 					</a></li>
 				</ul>
 			</div>
@@ -119,9 +109,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 
-						<h1 class="page-header">Administration des sociétés</h1>
-						<a class="btn btn-success" href="societeAdd.jsp">Créer une
-							société</a>
+						<h1 class="page-header">Liste des utilisateurs</h1>
 
 						<form role="form" id="formRegisterSociety" style="display: none"
 							method="post" action="#">
@@ -153,64 +141,26 @@
 
 				<div class="row" style="margin-top: 10px">
 					<%
-						List listSociete = Societe.getAllSociete();
+						List listUsers = User.getAllUsers();
 					%>
 					<div class="col-lg-12">
-					<ul class="nav nav-tabs" id="myTab" role="tablist">
-						  <li role="presentation" class="active"><a id="link_tab_2" role="tab" data-toggle="tab" aria-controls="tab1" aria-expanded="true" href="#tab1">Tous</a></li>
-						  <li role="presentation"><a role="tab" id="link_tab_1" data-toggle="tab" aria-controls="tab2" aria-expanded="false" href="#tab2">A valider</a></li>
-						</ul>
-						<div  id="tab1" class="tab-pane fade active in" role="tabpanel" aria-labelledby="link_tab_1" style="margin-top:20px">
+						<div class="table-responsive">
 							<table id="table"
 								class="table table-bordered table-hover table-striped">
 								<thead>
 									<tr>
-										<th>Mnémo</th>
-										<th>Société</th>
-										<th>Description</th>
+										<th>Username</th>
+										<th>Type</th>
 									</tr>
 								</thead>
 								<tbody>
 									<%
-										for (int i = 0; i < listSociete.size(); i++) {
-											String chaine=((Societe) listSociete.get(i)).getDescription();
-											String description=chaine.substring(0,(chaine.length()<250?chaine.length():300))+"  [...]";%>
-									<tr>
-										<td><%=((Societe) listSociete.get(i)).getMnemo()%></td>
-										<td><%=((Societe) listSociete.get(i)).getNom()%></td>
-										<td><%=description %></td>
-									</tr>
-									<%
-										}
+										for (int i = 0; i < listUsers.size(); i++) {
+											UserType type = ((User) listUsers.get(i)).getType();
 									%>
-
-								</tbody>
-							</table>
-						</div>
-						
-						<div  id="tab2" class="tab-pane fade" style="display:none;margin-top:20px" role="tabpanel" aria-labelledby="link_tab_2" >
-						<%
-						List listSociete2 = Societe.getSocieteAValider();
-						%>
-							<table id="table2" class="table table-bordered table-hover table-striped">
-								<thead>
 									<tr>
-										<th>Mnémo</th>
-										<th>Société</th>
-										<th>Description</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<%
-										for (int i = 0; i < listSociete2.size(); i++) {
-											String chaine=((Societe) listSociete2.get(i)).getDescription();
-											String description=chaine.substring(0,(chaine.length()<250?chaine.length():300))+"  [...]";%>
-									<tr>
-										<td><%=((Societe) listSociete2.get(i)).getMnemo()%></td>
-										<td><%=((Societe) listSociete2.get(i)).getNom()%></td>
-										<td><%=description %></td>
-										<td><a class="btn btn-success" href="validateSociete?idSoc=<%= ((Societe) listSociete2.get(i)).getIdSociete()%>">Valider</a></td>
+										<td><%=((User) listUsers.get(i)).getUsername()%></td>
+										<td><%=type.toString()%></td>
 									</tr>
 									<%
 										}
