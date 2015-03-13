@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.beans.Investisseur;
+import com.ejb.ServiceInvestisseur;
 
 /**
  * Servlet implementation class InvestissorAdd
@@ -40,8 +41,8 @@ public class InvestissorAdd extends HttpServlet {
 		String prenom = request.getParameter("prenom");
 		String mail = request.getParameter("email");
 		String pass = request.getParameter("password");
-		
-		Investisseur.createInvestissor(nom, prenom, mail, pass);
+		ServiceInvestisseur si=new ServiceInvestisseur();
+		si.createInvestissor(nom, prenom, mail, pass);
 		
 	}
 
