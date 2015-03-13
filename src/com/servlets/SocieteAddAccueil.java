@@ -42,12 +42,9 @@ public class SocieteAddAccueil extends HttpServlet {
 		String societe = request.getParameter("societe" );
 		String mnemo = request.getParameter("mnemo");
 		String description = request.getParameter("description");
-		String mail = request.getParameter("mail");
+		String mail = request.getParameter("email");
 				
 		Societe soc=Societe.createSocieteStandBy(societe, mnemo, description,mail);
-		
-
-		
 	}
 
 }

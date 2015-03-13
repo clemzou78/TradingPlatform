@@ -57,6 +57,13 @@
 	<script>
 		$(document).ready(function() {
 			$("#table").DataTable();
+			$("#table2").DataTable();
+
+			$('#myTab a').click(function (e) {
+				  e.preventDefault()
+				  $(".tab-pane").hide();
+				  $($(this).attr("href")).fadeIn("fast");
+				})
 		});
 		/*
 		 function fade()
@@ -149,7 +156,11 @@
 						List listSociete = Societe.getAllSociete();
 					%>
 					<div class="col-lg-12">
-						<div class="table-responsive">
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+						  <li role="presentation" class="active"><a id="link_tab_2" role="tab" data-toggle="tab" aria-controls="tab1" aria-expanded="true" href="#tab1">Tous</a></li>
+						  <li role="presentation"><a role="tab" id="link_tab_1" data-toggle="tab" aria-controls="tab2" aria-expanded="false" href="#tab2">A valider</a></li>
+						</ul>
+						<div  id="tab1" class="tab-pane fade active in" role="tabpanel" aria-labelledby="link_tab_1" style="margin-top:20px">
 							<table id="table"
 								class="table table-bordered table-hover table-striped">
 								<thead>
@@ -168,6 +179,38 @@
 										<td><%=((Societe) listSociete.get(i)).getMnemo()%></td>
 										<td><%=((Societe) listSociete.get(i)).getNom()%></td>
 										<td><%=description %></td>
+									</tr>
+									<%
+										}
+									%>
+
+								</tbody>
+							</table>
+						</div>
+						
+						<div  id="tab2" class="tab-pane fade" style="display:none;margin-top:20px" role="tabpanel" aria-labelledby="link_tab_2" >
+						<%
+						List listSociete2 = Societe.getSocieteAValider();
+						%>
+							<table id="table2" class="table table-bordered table-hover table-striped">
+								<thead>
+									<tr>
+										<th>Mnémo</th>
+										<th>Société</th>
+										<th>Description</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<%
+										for (int i = 0; i < listSociete2.size(); i++) {
+											String chaine=((Societe) listSociete2.get(i)).getDescription();
+											String description=chaine.substring(0,(chaine.length()<250?chaine.length():300))+"  [...]";%>
+									<tr>
+										<td><%=((Societe) listSociete2.get(i)).getMnemo()%></td>
+										<td><%=((Societe) listSociete2.get(i)).getNom()%></td>
+										<td><%=description %></td>
+										<td><a class="btn btn-success" href="validateSociete?idSoc=<%= ((Societe) listSociete2.get(i)).getIdSociete()%>">Valider</a></td>
 									</tr>
 									<%
 										}

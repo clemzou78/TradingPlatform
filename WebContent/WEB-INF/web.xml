@@ -62,6 +62,15 @@
     <url-pattern>/SocieteAddAccueil</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ValidateSociete</servlet-name>
+    <servlet-class>com.servlets.ValidateSociete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidateSociete</servlet-name>
+    <url-pattern>/admin/validateSociete</url-pattern>
+  </servlet-mapping>
+  
   <filter>
     <filter-name>AdminFilter</filter-name>
     <filter-class>com.filters.AdminFilter</filter-class>
