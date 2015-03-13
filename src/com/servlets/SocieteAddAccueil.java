@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.beans.Societe;
+import com.ejb.ServiceSociete;
 import com.util.RandomStringGenerator;
 
 /**
@@ -43,8 +44,8 @@ public class SocieteAddAccueil extends HttpServlet {
 		String mnemo = request.getParameter("mnemo");
 		String description = request.getParameter("description");
 		String mail = request.getParameter("email");
-				
-		Societe soc=Societe.createSocieteStandBy(societe, mnemo, description,mail);
+		ServiceSociete ss = new ServiceSociete();
+		Societe soc=ss.createSocieteStandBy(societe, mnemo, description,mail);
 	}
 
 }

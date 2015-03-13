@@ -2,6 +2,7 @@
 <%@ page import="com.beans.Societe"%>
 <%@ page import="com.beans.User"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.ejb.*"%>
 <%
 	User u = (User) session.getAttribute("sessionUser");
 %>
@@ -153,7 +154,8 @@
 
 				<div class="row" style="margin-top: 10px">
 					<%
-						List listSociete = Societe.getAllSociete();
+						ServiceSociete ss=new ServiceSociete();
+						List listSociete = ss.getAllSociete();
 					%>
 					<div class="col-lg-12">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -190,7 +192,8 @@
 						
 						<div  id="tab2" class="tab-pane fade" style="display:none;margin-top:20px" role="tabpanel" aria-labelledby="link_tab_2" >
 						<%
-						List listSociete2 = Societe.getSocieteAValider();
+						
+						List listSociete2 = ss.getSocieteAValider();
 						%>
 							<table id="table2" class="table table-bordered table-hover table-striped">
 								<thead>

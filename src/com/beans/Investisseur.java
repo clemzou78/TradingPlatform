@@ -1,13 +1,10 @@
 package com.beans;
 
-
-
-
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.connection.HibernateUtil;
+import com.util.Hash;
 
 public class Investisseur {
 	private int idInvestisseur;
@@ -42,7 +39,7 @@ public class Investisseur {
 		User u=new User();
 		u.setUsername(mail);
 		u.setType(UserType.Investisseur);
-		u.setPassword(User.sha256(pass));
+		u.setPassword(Hash.sha256(pass));
 		session.save(u);
 
 		Investisseur s=new Investisseur();
