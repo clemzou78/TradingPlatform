@@ -97,6 +97,18 @@ public class Societe {
 
 	}
 	
+	public static  List getSocieteAValider(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+
+		String hql = "FROM Societe s where s.validate=1";
+		Query query = session.createQuery(hql);
+		List results = query.list();
+		session.close();
+		return results;
+
+	}
+	
 	public static Societe createSociete(String nom, String mnemo, String description, String pass){ // avec un compte associé
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
