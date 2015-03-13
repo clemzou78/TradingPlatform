@@ -152,6 +152,24 @@ public class Societe {
 		
 		return s;
 	}
+	
+	public static Societe valider(int id,String pass){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		Societe s =  (Societe) session.get(Societe.class, id);
+		
+		User u=new User();
+		u.setUsername(s.getEmail());
+		u.setType(UserType.Societe);
+		u.setPassword(User.sha256(pass));
+		session.save(u);
+		
+		s.setValidate(true);
+		s.setUserSociety(u);
+		tx.commit();
+		
+		return s;
+	}
 
 
 
