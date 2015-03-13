@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="com.ejb.ServiceUser"%>
+<%@ page import="com.ejb.ServiceUser"%>
 <%@ page import="com.beans.User"%>
 <%@ page import="com.beans.UserType"%>
 <%@ page import="java.util.*"%>
