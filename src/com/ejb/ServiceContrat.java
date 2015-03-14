@@ -155,6 +155,26 @@ public class ServiceContrat {
 		}
 		return m;
 	}
+	
+	public ContratDirect fin(int idcd,int iduser) throws OffrePerime{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		
+		ContratDirect ce=(ContratDirect) session.get(com.beans.contrat.ContratDirect.class,idcd);
+		
+		if(ce.isFini()){
+			session.close();
+			throw new OffrePerime();
+		}
+		
+		ce.setFini(true);
+		ce.setAccepteUser((Investisseur) session.get(com.beans.Investisseur.class, iduser));
+		tx.commit();
+		session.close();
+		
+		return ce;
+	}
 
 	public ContratEnchere fin(int idce){
 
