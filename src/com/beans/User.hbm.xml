@@ -14,7 +14,7 @@
         <property name="password" type="java.lang.String">
             <column name="PASSWORD" />
         </property>
-        <property name="dateCreated" type="int">
+        <property name="dateCreated" type="java.util.Date">
             <column name="DATECREATED" />
         </property>
         <property name="type" column="TYPE">

@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -29,7 +29,7 @@ public class User {
 	private int id;
 	private String username;
 	private String password;
-	private int dateCreated;
+	private Date dateCreated;
 	private UserType type;
 	
 	
@@ -61,11 +61,11 @@ public class User {
 		this.password = password;
 	}
 
-	public int getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(int dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 

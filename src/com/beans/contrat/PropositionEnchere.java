@@ -1,11 +1,18 @@
 package com.beans.contrat;
 
+import java.util.Date;
+
 import com.beans.Investisseur;
 
 public class PropositionEnchere {
 	int idProposition;
 	Investisseur encherisseur;
 	double montant;
+	private Date dateEnchere;
+	
+	public PropositionEnchere(){
+		
+	}
 	public int getIdProposition() {
 		return idProposition;
 	}
@@ -23,6 +30,12 @@ public class PropositionEnchere {
 	}
 	public void setMontant(double montant) {
 		this.montant = montant;
+	}
+	public Date getDateEnchere() {
+		return dateEnchere;
+	}
+	public void setDateEnchere(Date dateEnchere) {
+		this.dateEnchere = dateEnchere;
 	}
 	
 	
