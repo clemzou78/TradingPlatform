@@ -1,3 +1,6 @@
+<%@ page import="java.text.*,java.util.*" %>
+<%@ page import="com.ejb.ServiceSociete" %>
+<%@ page import="com.beans.Societe" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,12 +13,15 @@
     <meta name="author" content="">
 
     <title>SB Admin - Bootstrap Admin Template</title>
-	
+	<link rel="stylesheet" type="text/css"
+		href="../DataTables-1.10.5/media/css/jquery.dataTables.css">
 	<!-- jQuery -->
     <script src="../js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+   <script type="text/javascript" charset="utf8"src="../DataTables-1.10.5/media/js/jquery.dataTables.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -24,7 +30,9 @@
 
     <!-- Morris Charts CSS -->
     <link href="../css/plugins/morris.css" rel="stylesheet">
-
+    
+	
+	<!-- jQuery -->
     <!-- Custom Fonts -->
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -38,7 +46,62 @@
 </head>
 
 <body>
-
+<script>
+$(document).ready(function(){
+	$("select[name=idSociete]").change(function(){
+		
+		if($(this).val()==0){
+			$("#etape2").hide()
+			$("#etape3").hide();
+			$("#etape4").hide()
+			$("#etapeOption").hide();
+			$("#etapeAction").hide()
+		}
+		else $("#etape2").slideDown("fast");
+	});
+	$("select[name=typeActif]").on("change",function(){		
+		if($(this).val()==0){
+			$("#etape3").hide();
+			$("#etape4").hide()
+			$("#etapeOption").hide();
+			$("#etapeAction").hide()
+		}
+		else if($("#etape4").is(":visible")){
+			if($("select[name=typeActif]").val()=="Action"){
+				$("#etapeOption").slideUp("fast",function(){
+					 $("#etapeAction").slideDown("fast");
+				});			
+			}
+			else {
+				$("#etapeAction").slideUp("fast",function(){
+					 $("#etapeOption").slideDown("fast");
+				});	
+			}
+		}
+		else $("#etape3").slideDown("fast");
+	});
+	$("select[name=nego]").on("change",function(){
+		
+		if($(this).val()==0){
+			$("#etape4").hide()
+			$("#etapeOption").hide();
+			$("#etapeAction").hide()
+		}
+		else $("#etape4").slideDown("fast");
+	});
+	$("select[name=typeContrat]").on("change",function(){
+		$("#dateEnchere").hide();
+		if($(this).val()=="enchere") $("#dateEnchere").slideDown("fast");
+		
+		if($(this).val()==0){
+			$("#etapeOption").hide();
+			$("#etapeAction").hide()
+		}
+		else if($("select[name=typeActif]").val()=="Action") $("#etapeAction").slideDown("fast");
+		else $("#etapeOption").slideDown("fast");
+	});
+});
+</script>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -204,82 +267,101 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Bienvenue sur votre espace Investisseur
+                            Offres en cours
                         </h1>
                         
                     </div>
                 </div>
                 <!-- /.row -->
-
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="alert alert-info alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i> Version béta 1.0 en cours de développement
-                        </div>
-                    </div>
+                	<div class="col-lg-6">
+                		<form action="offreAdd" method="post">
+                			<div class="form-group" id="etape1">
+                				<label>Entreprise</label>
+                				<select name="idSociete" class="form-control">
+                					<option value="0">Choisir la société</option>
+                					<% ServiceSociete ss=new ServiceSociete();
+                					List socList=ss.getSocieteSelonEtat(1);
+                					for(Object s : socList){
+                						Societe soc=(Societe) s;
+                					%>
+                					<option value="<%= soc.getIdSociete() %>"><%= soc.getNom()%> (<%= soc.getMnemo() %>)</option>
+                					<%
+                					}
+                					%>
+                				</select>
+                			</div>
+                			<div class="form-group" id="etape2" style="display:none">
+                				<label>Type d'actif</label>
+                				<select name="typeActif" class="form-control">
+                					<option value="0">Choisir le type d'actif</option>
+                					<option value="Action">Action</option>
+                					<option value="stockOption">StockOption</option>
+                				</select>
+                			</div>
+                			<div class="form-group" id="etape3" style="display:none">
+                				<label>Je veux ?</label>
+                				<select name="nego" class="form-control">
+                					<option value="0">Choisir Acheter/Vendre ?</option>
+                					<option value="Achat">Acheter</option>
+                					<option value="Vente">Vendre</option>
+                				</select>
+                			</div>
+                			
+                			<div class="form-group" id="etape4" style="display:none">
+                				<label>Négociation</label>
+                				<select name="typeContrat" class="form-control">
+                					<option value="0">Choisir Direct/Enchère ?</option>
+                					<option value="direct">Direct</option>
+                					<option value="enchere">Enchère</option>
+                				</select>
+                			</div>
+                			<%!
+							   DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+							   String now = fmt.format(Calendar.getInstance().getTime());
+							   DateFormat fmt2 = new SimpleDateFormat("HH:mm");
+							   String now2 = fmt2.format(Calendar.getInstance().getTime());
+							%>
+                			<div class="form-group" id="dateEnchere" style="display:none">
+                				<label>Date fin enchère</label>                				
+                				<input type="date" name="date" value="<%= now%>" min="<%= now%>" class="form-control" style="width:30%"/><input style="width:30%" class="form-control" type="time" value="<%= now2 %>" name="time"/>
+                			</div>
+                			<div id="etapeOption" style="display:none" class="well">
+                				<div class="form-group" >
+	                				<label>Quantite</label>
+	                				<input type="text" name="quantite" class="form-control"/>
+	                			</div>
+	                			<div class="form-group" >
+	                				<label>Prix</label>
+	                				<input type="text" name="prix" class="form-control"/>
+	                			</div>
+	                			<div class="form-group"  >
+	                				<label>Maturité</label>
+	                				<input type="date" name="maturite" class="form-control"/>
+	                			</div>
+	                			<div class="form-group" >
+	                				<label>Strike</label>
+	                				<input type="text" name="strike" class="form-control"/>
+	                			</div>
+                			</div>
+                			
+                			<div id="etapeAction" style="display:none" class="well">
+                				<div class="form-group" >
+	                				<label>Quantite</label>
+	                				<input type="text" name="quantite" class="form-control"/>
+	                			</div>
+	                			<div class="form-group">
+	                				<label>Prix</label>
+	                				<input type="text" name="prix" class="form-control"/>
+	                			</div>
+                			</div>
+                			
+                			<button type="submit" class="btn btn-success">Ajouter l'offre</button>
+                		</form>
+                	</div>
                 </div>
-                <!-- /.row -->
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-building fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">26</div>
-                                        <div>Nouvelles sociétés!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Détails</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-dashboard fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>enchères en cours!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                   
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>Statistiques ce mois-ci</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-area-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
+               
 
                 
 

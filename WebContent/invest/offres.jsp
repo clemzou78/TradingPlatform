@@ -10,12 +10,15 @@
     <meta name="author" content="">
 
     <title>SB Admin - Bootstrap Admin Template</title>
-	
+	<link rel="stylesheet" type="text/css"
+		href="../DataTables-1.10.5/media/css/jquery.dataTables.css">
 	<!-- jQuery -->
     <script src="../js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+   <script type="text/javascript" charset="utf8"src="../DataTables-1.10.5/media/js/jquery.dataTables.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -24,7 +27,9 @@
 
     <!-- Morris Charts CSS -->
     <link href="../css/plugins/morris.css" rel="stylesheet">
-
+    
+	
+	<!-- jQuery -->
     <!-- Custom Fonts -->
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -36,7 +41,35 @@
     <![endif]-->
 
 </head>
-
+<script>
+$(document).ready(function(){
+	$("#offres").DataTable({
+		"order": [],
+	    "columnDefs": [ {
+	      "targets"  : 'no-sort',
+	      "orderable": false,
+	    }],
+	    initComplete: function () {
+		    var api=this.api();
+		    var column=api.column(5);
+		    $("select[name=typeContrat]").change(function(){
+				var val=$(this).val();
+				column
+				.search( val ? '^'+val+'$' : '', true, false )
+                .draw();
+			});
+		    var api=this.api();
+			var column2=api.column(4);
+			$("select[name=venteAchat]").change(function(){
+				var val2=$(this).val();
+				column2
+				.search( val2 ? '^'+val2+'$' : '', true, false )
+                .draw();
+			});
+		}
+	})
+});
+</script>
 <body>
 
     <div id="wrapper">
@@ -204,82 +237,123 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Bienvenue sur votre espace Investisseur
+                            Offres en cours
                         </h1>
                         
                     </div>
                 </div>
                 <!-- /.row -->
-
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="alert alert-info alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i> Version béta 1.0 en cours de développement
-                        </div>
-                    </div>
+                	<div class="col-lg-12">
+                		<table id="offres" class="table table-bordered table-hover table-striped">
+                			<thead>
+                				<tr>
+                					<th>Société</th>
+                					<th>Mnémo</th>
+                					<th>Type Actif</th>
+                					<th>Quantité</th>
+                					<th class="no-sort"><select name="venteAchat"><option value="">Vente/Achat(tous)</option><option value="Vente">Vente</option><option value="Achat">Achat</option></select></th>
+                					<th class="no-sort"><select name="typeContrat"><option value="">Type Contrat (Tous)</option><option value="Direct">Direct</option><option value="Enchère">Enchère</option></select></th>
+                					<th>Prix</th>
+                					<th>Investisseur</th>
+                					<th>Action</th>
+                				</tr>
+                			</thead>
+                			<tbody>
+                				<tr>
+                					<td>Bouygues</td>
+                					<td>BOUY</td>
+                					<td>Action</td>
+                					<td>200</td>
+                					<td>Vente</td>
+                					<td>Enchère</td>
+                					<td>2569</td>
+                					<td>Mickael Tran</td>
+                					<td><button class="btn btn-success">Wouhou</button></td>
+                				</tr>
+                				<tr>
+                					<td>Bouygues</td>
+                					<td>BOUY</td>
+                					<td>Action</td>
+                					<td>200</td>
+                					<td>Vente</td>
+                					<td>Enchère</td>
+                					<td>2569</td>
+                					<td>Mickael Tran</td>
+                					<td><button class="btn btn-success">Wouhou</button></td>
+                				</tr>
+                				<tr>
+                					<td>Bouygues</td>
+                					<td>BOUY</td>
+                					<td>Action</td>
+                					<td>200</td>
+                					<td>Vente</td>
+                					<td>Enchère</td>
+                					<td>2569</td>
+                					<td>Mickael Tran</td>
+                					<td><button class="btn btn-success">Wouhou</button></td>
+                				</tr>
+                				<tr>
+                					<td>Bouygues</td>
+                					<td>BOUY</td>
+                					<td>Action</td>
+                					<td>200</td>
+                					<td>Vente</td>
+                					<td>Enchère</td>
+                					<td>2569</td>
+                					<td>Mickael Tran</td>
+                					<td><button class="btn btn-success">Wouhou</button></td>
+                				</tr>
+                				<tr>
+                					<td>Bouygues</td>
+                					<td>BOUY</td>
+                					<td>Action</td>
+                					<td>200</td>
+                					<td>Vente</td>
+                					<td>Enchère</td>
+                					<td>2569</td>
+                					<td>Mickael Tran</td>
+                					<td><button class="btn btn-success">Wouhou</button></td>
+                				</tr>
+                				<tr>
+                					<td>Bouygues</td>
+                					<td>BOUY</td>
+                					<td>Action</td>
+                					<td>1233</td>
+                					<td>Achat</td>
+                					<td>Direct</td>
+                					<td>2569</td>
+                					<td>Mickael Tran</td>
+                					<td><button class="btn btn-success">Wouhou</button></td>
+                				</tr>
+                				<tr>
+                					<td>Bouygues</td>
+                					<td>BOUY</td>
+                					<td>Action</td>
+                					<td>200</td>
+                					<td>Vente</td>
+                					<td>direct</td>
+                					<td>2569</td>
+                					<td>Mickael Tran</td>
+                					<td><button class="btn btn-success">Wouhou</button></td>
+                				</tr>
+                				<tr>
+                					<td>Bouygues</td>
+                					<td>BOUY</td>
+                					<td>Action</td>
+                					<td>200</td>
+                					<td>Achat</td>
+                					<td>Direct</td>
+                					<td>2569</td>
+                					<td>Mickael Tran</td>
+                					<td><button class="btn btn-success">Wouhou</button></td>
+                				</tr>
+                			</tbody>
+                		</table>
+                	</div>
                 </div>
-                <!-- /.row -->
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-building fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">26</div>
-                                        <div>Nouvelles sociétés!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Détails</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-dashboard fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>enchères en cours!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                   
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>Statistiques ce mois-ci</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-area-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
+               
 
                 
 
