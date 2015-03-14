@@ -1,5 +1,6 @@
 package com.ejb;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -76,6 +77,7 @@ public class ServiceSociete {
 		u.setUsername(s.getEmail());
 		u.setType(UserType.Societe);
 		u.setPassword(Hash.sha256(pass));
+		u.setDateCreated(Calendar.getInstance().getTime());
 		session.save(u);
 
 		s.setValidate(true);
@@ -93,6 +95,7 @@ public class ServiceSociete {
 		u.setUsername(email);
 		u.setType(UserType.Societe);
 		u.setPassword(Hash.sha256(pass));
+		u.setDateCreated(Calendar.getInstance().getTime());
 		session.save(u);
 
 		Societe s=new Societe();

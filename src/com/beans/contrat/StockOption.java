@@ -1,6 +1,6 @@
 package com.beans.contrat;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class StockOption extends Actif{
 	Date maturite;

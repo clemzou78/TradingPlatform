@@ -6,7 +6,7 @@
     <class name="com.beans.contrat.Actif" table="ACTIF" abstract="true">
         <id name="idActif" type="int" access="field">
             <column name="IDACTIF" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         
         <many-to-one name="soc" class="com.beans.Societe" access="field" fetch="join">
@@ -22,7 +22,7 @@
     	</joined-subclass>  
     	  <joined-subclass name="com.beans.contrat.StockOption" extends="com.beans.contrat.Actif">
     	  <key column="IDACTIF"/>
-		        <property name="maturite" type="java.sql.Date" access="field">
+		        <property name="maturite" type="java.util.Date" access="field">
 		            <column name="MATURITE" />
 		        </property>
 		        <property name="strike" type="double" access="field">

@@ -1,5 +1,6 @@
 package com.ejb;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -37,6 +38,7 @@ public class ServiceInvestisseur {
 		u.setUsername(mail);
 		u.setType(UserType.Investisseur);
 		u.setPassword(Hash.sha256(pass));
+		u.setDateCreated(Calendar.getInstance().getTime());
 		session.save(u);
 
 		Investisseur s=new Investisseur();

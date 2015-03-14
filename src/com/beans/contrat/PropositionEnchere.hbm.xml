@@ -1,18 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 13 mars 2015 22:55:27 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 14 mars 2015 11:44:25 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.beans.contrat.PropositionEnchere" table="PROPOSITIONENCHERE">
-        <id name="idProposition" type="int" access="field">
+        <id name="idProposition" type="int">
             <column name="IDPROPOSITION" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
-        <many-to-one name="encherisseur" class="com.beans.Investisseur" access="field" fetch="join">
+        <many-to-one name="encherisseur" class="com.beans.Investisseur" fetch="join">
             <column name="ENCHERISSEUR" />
         </many-to-one>
-        <property name="montant" type="double" access="field">
+        <property name="montant" type="double">
             <column name="MONTANT" />
+        </property>
+        <property name="dateEnchere" type="java.util.Date">
+            <column name="DATEENCHERE" />
         </property>
     </class>
 </hibernate-mapping>

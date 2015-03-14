@@ -16,11 +16,8 @@
         <mapping resource="com/beans/Societe.hbm.xml"/>
         <mapping resource="com/beans/Investisseur.hbm.xml"/>
         <mapping resource="com/beans/contrat/Actif.hbm.xml"/>
-        <!-- mapping resource="com/beans/contrat/Action.hbm.xml"/ -->
-        <mapping resource="com/beans/contrat/ContratDirect.hbm.xml"/>
-        <mapping resource="com/beans/contrat/ContratEnchere.hbm.xml"/>
+        <mapping resource="com/beans/contrat/Contrat.hbm.xml"/>
         <mapping resource="com/beans/contrat/PropositionEnchere.hbm.xml"/>
-        <!-- mapping resource="com/beans/contrat/StockOption.hbm.xml"/-->
         
         
         
