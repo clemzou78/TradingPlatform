@@ -63,7 +63,7 @@ public class ServiceContrat {
 	}
 
 
-	public ContratDirect creationContratDirect(Investisseur initiateur, Actif a, int qte, NegoType n){
+	public ContratDirect creationContratDirect(Investisseur initiateur, Actif a, int qte, double prix, NegoType n){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
@@ -73,6 +73,7 @@ public class ServiceContrat {
 		cd.setAccepteUser(null);
 		cd.setQuantite(qte);
 		cd.setTypeN(n);
+		cd.setPrix(prix);
 		cd.setCreation(Calendar.getInstance().getTime());
 
 		session.save(cd);
@@ -81,7 +82,7 @@ public class ServiceContrat {
 		return cd;
 	}
 
-	public ContratEnchere creationContratEnchere(Investisseur initiateur,Date dateLimite, Actif a, int qte, NegoType n){
+	public ContratEnchere creationContratEnchere(Investisseur initiateur,Date dateLimite, Actif a, int qte, double prixDepart, NegoType n){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
@@ -90,6 +91,7 @@ public class ServiceContrat {
 		ce.setProposeUser(initiateur);
 		ce.setAccepteUser(null);
 		ce.setDateFin(dateLimite);
+		ce.setPrixDepart(prixDepart);
 		ce.setQuantite(qte);
 		ce.setTypeN(n);
 		ce.setCreation(Calendar.getInstance().getTime());
