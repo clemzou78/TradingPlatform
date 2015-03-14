@@ -1,8 +1,11 @@
+<%@page import="com.ejb.ServiceInvestisseur"%>
 <%@ page import="com.beans.User" %>
+<%@ page import="com.beans.Investisseur" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <% User u=(User)session.getAttribute("sessionUser");
-	
+	ServiceInvestisseur si=new ServiceInvestisseur();
+	Investisseur i=si.getByIdUser(u.getId());
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -198,20 +201,24 @@
 						<form>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Nom</label> <input
-									type="text" class="form-control" id="exampleInputEmail1" placeholder="Nom">
+									type="text" class="form-control"  placeholder="Nom" value="<%= i.getNom()%>" required="required">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputPassword1">Prénom</label> <input type="text" class="form-control" id="exampleInputPassword1"
-									placeholder="Prénom">
+								<label for="exampleInputPassword1">Prénom</label> <input type="text" class="form-control" value="<%= i.getPrenom() %>"
+									placeholder="Prénom" required="required">
+							</div>		
+							<div class="form-group">
+								<label for="exampleInputFile">Téléphone</label> <input required="required" type="text" class="form-control" value="<%= i.getTelephone() %>" placeholder="Code Postal">
+							</div>					
+							<div class="form-group">
+								<label for="exampleInputFile">Adresse complète</label> <input required="required" type="text" class="form-control" value="<%= i.getAdresse() %>" placeholder="Adresse">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputFile">Adresse complète</label> <input type="text" class="form-control" placeholder="Adresse">
+								<label for="exampleInputFile">Code postal</label> <input required="required" type="text" class="form-control" value="<%= i.getCodePostal() %>" placeholder="Code Postal">
 							</div>
+							
 							<div class="form-group">
-								<label for="exampleInputFile">Code postal</label> <input type="text" class="form-control" placeholder="Code Postal">
-							</div>
-							<div class="form-group">
-								<label for="exampleInputFile">Ville</label> <input type="text" class="form-control" placeholder="Ville">
+								<label for="exampleInputFile">Ville</label> <input required="required" type="text" class="form-control" value="<%= i.getVille() %>" placeholder="Ville">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputFile">Pays</label> 
@@ -222,7 +229,7 @@
 								</select>
 							</div>
 							<div class="checkbox">
-								<label> <input type="checkbox"> J'accepte les conditions générales de TradingPlatform
+								<label> <input type="checkbox" required="required"> J'accepte les conditions générales de TradingPlatform
 								</label>
 							</div>
 							<button type="submit" class="btn btn-success">Valider mon profil</button>

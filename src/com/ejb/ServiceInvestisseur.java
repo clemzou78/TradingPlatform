@@ -49,7 +49,6 @@ public class ServiceInvestisseur {
 		session.close();
 		return s;
 	}
-	
 	public Investisseur getById(int idInvestisseur){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
@@ -59,6 +58,19 @@ public class ServiceInvestisseur {
 		tx.commit();
 		session.close();
 		return s;
+	}
+	
+	public Investisseur getByIdUser(int idUser){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+
+		String hql = "FROM Investisseur i WHERE i.iduser = "+idUser;
+		Query query = session.createQuery(hql);
+		List results = query.list();
+		
+		tx.commit();
+		session.close();
+		return (Investisseur)results.get(0);
 	}
     
 	public Investisseur modifyProfile(int idInvestisseur,String nom, String prenom, String adresse, String ville, String codePostal, String pays,

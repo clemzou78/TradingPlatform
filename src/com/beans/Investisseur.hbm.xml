@@ -6,7 +6,7 @@
     <class name="com.beans.Investisseur" table="INVESTISSEUR">
         <id name="idInvestisseur" type="int">
             <column name="IDINVESTISSEUR" />
-            <generator class="assigned" />
+            <generator class="increment"/>
         </id>
         <property name="nom" type="java.lang.String">
             <column name="NOM" />
@@ -15,7 +15,7 @@
             <column name="PRENOM" />
         </property>
         <many-to-one name="userInvestor" class="com.beans.User" fetch="join">
-            <column name="USERINVESTOR" />
+            <column name="iduser" />
         </many-to-one>
         <property name="validate" type="boolean">
             <column name="VALIDATE" />
