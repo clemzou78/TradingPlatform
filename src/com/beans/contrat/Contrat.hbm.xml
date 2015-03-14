@@ -34,39 +34,43 @@
         <property name="creation" type="java.util.Date" access="field">
             <column name="CREATION" />
         </property>
+
+        <property name="fini" type="boolean">
+            <column name="FINI" />
+        </property>
         
         
         
-         <joined-subclass name="com.beans.contrat.ContratEnchere" extends="com.beans.contrat.Contrat" table="CONTRATENCHERE" lazy="false">
-        <key>
-            <column name="IDCONTRAT" />
-        </key>
-        <property name="prixDepart" type="double" access="field">
-            <column name="PRIXDEPART" />
-        </property>
-        <property name="dateFin" type="java.util.Date">
-            <column name="DATEFIN" />
-        </property>
-        <list name="propEnc" inverse="false" table="PROPOSITIONENCHERE" lazy="true">
-            <key>
-                <column name="PRIXDEPART" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="com.beans.contrat.PropositionEnchere" />
-        </list>
-    </joined-subclass>
-    
-    <joined-subclass name="com.beans.contrat.ContratDirect" extends="com.beans.contrat.Contrat" table="CONTRATDIRECT" lazy="false">
-        <key>
-            <column name="IDCONTRAT" />
-        </key>
-        <property name="dateTransaction" type="java.util.Date">
-            <column name="DATETRANSACTION" />
-        </property>
-        <property name="prix" type="double" access="field">
-            <column name="PRIX" />
-        </property>
-    </joined-subclass>
+	     <joined-subclass name="com.beans.contrat.ContratEnchere" extends="com.beans.contrat.Contrat" table="CONTRATENCHERE" lazy="false">
+	        <key>
+	            <column name="IDCONTRAT" />
+	        </key>
+	        <property name="prixDepart" type="double" access="field">
+	            <column name="PRIXDEPART" />
+	        </property>
+	        <property name="dateFin" type="java.util.Date">
+	            <column name="DATEFIN" />
+	        </property>
+	        <list name="propEnc" inverse="false" table="PROPOSITIONENCHERE" lazy="true">
+	            <key>
+	                <column name="PRIXDEPART" />
+	            </key>
+	            <list-index></list-index>
+	            <one-to-many class="com.beans.contrat.PropositionEnchere" />
+	        </list>
+	    </joined-subclass>
+	    
+	    <joined-subclass name="com.beans.contrat.ContratDirect" extends="com.beans.contrat.Contrat" table="CONTRATDIRECT" lazy="false">
+	        <key>
+	            <column name="IDCONTRAT" />
+	        </key>
+	        <property name="dateTransaction" type="java.util.Date">
+	            <column name="DATETRANSACTION" />
+	        </property>
+	        <property name="prix" type="double" access="field">
+	            <column name="PRIX" />
+	        </property>
+	    </joined-subclass>
     
     
     </class>
