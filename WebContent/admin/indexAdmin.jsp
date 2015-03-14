@@ -193,7 +193,7 @@
 						<div  id="tab2" class="tab-pane fade" style="display:none;margin-top:20px" role="tabpanel" aria-labelledby="link_tab_2" >
 						<%
 						
-						List listSociete2 = ss.getSocieteAValider();
+						List listSociete2 = ss.getSocieteSelonEtat(0);
 						%>
 							<table id="table2" class="table table-bordered table-hover table-striped">
 								<thead>

@@ -57,16 +57,18 @@ public class ServiceSociete {
 		return s;
 	}
 
-	public  List getSocieteAValider(){
+	public  List getSocieteSelonEtat(int i){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
-		String hql = "FROM Societe s where s.validate=0";
+		String hql = "FROM Societe s where s.validate="+i;
 		Query query = session.createQuery(hql);
 		List results = query.list();
 		session.close();
 		return results;
 	}
+	
+
 
 	public Societe valider(int id,String pass){
 		Session session = HibernateUtil.getSessionFactory().openSession();
