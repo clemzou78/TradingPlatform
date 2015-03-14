@@ -64,7 +64,7 @@ public class ServiceInvestisseur {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
-		String hql = "FROM Investisseur i WHERE i.iduser = "+idUser;
+		String hql = "FROM Investisseur i WHERE i.userInvestor = "+idUser;
 		Query query = session.createQuery(hql);
 		List results = query.list();
 		
