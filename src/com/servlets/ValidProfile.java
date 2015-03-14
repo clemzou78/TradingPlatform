@@ -1,30 +1,26 @@
 package com.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.beans.Societe;
-import com.ejb.ServiceSociete;
-import com.util.RandomStringGenerator;
+import com.ejb.ServiceInvestisseur;
 
 /**
- * Servlet implementation class SocieteAdd
+ * Servlet implementation class ValidProfile
  */
-@WebServlet("/SocieteAdd")
-public class SocieteAdd extends HttpServlet {
+@WebServlet("/ValidProfile")
+public class ValidProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SocieteAdd() {
+    public ValidProfile() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,19 +36,16 @@ public class SocieteAdd extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter("nom" );
-		String mnemo = request.getParameter("mnemo");
-		String description = request.getParameter("description");
-		String email=request.getParameter("email");
-		String pass=RandomStringGenerator.generateRandomString(10, RandomStringGenerator.Mode.ALPHANUMERIC);
-		ServiceSociete ss=new ServiceSociete();
-		Societe soc=ss.createSociete(nom, mnemo, description,email,pass);
-		
-		HttpSession s=request.getSession();
-		s.setAttribute("societe", soc);
-		s.setAttribute("pass",pass);
-		request.getRequestDispatcher("attenteValidation.jsp").forward(request, response);
-		
+		String prenom=request.getParameter("prenom");
+		String nom=request.getParameter("nom");
+		String tel=request.getParameter("tel");
+		String adresse=request.getParameter("adresse");
+		String cp=request.getParameter("cp");
+		String pays=request.getParameter("pays");
+		String ville=request.getParameter("ville");
+		int idInvest=Integer.parseInt(request.getParameter("idInvest"));
+		ServiceInvestisseur si=new ServiceInvestisseur();
+		si.modifyProfile(idInvest, nom, prenom, adresse, ville, cp, pays, tel);
 	}
 
 }

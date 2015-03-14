@@ -43,6 +43,11 @@ public class ServiceInvestisseur {
 		s.setPrenom(prenom);
 		s.setNom(nom);
 		s.setUserInvestor(u);
+		s.setAdresse("");
+		s.setVille("");
+		s.setCodePostal("");
+		s.setPays("");
+		s.setTelephone("");
 		s.setValidate(false);
 		session.save(s);
 		tx.commit();

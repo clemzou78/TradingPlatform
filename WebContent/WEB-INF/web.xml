@@ -65,6 +65,14 @@
     <servlet-name>ValidateSociete</servlet-name>
     <url-pattern>/admin/validateSociete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ValidProfile</servlet-name>
+    <servlet-class>com.servlets.ValidProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidProfile</servlet-name>
+    <url-pattern>/invest/ValidProfile</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>AdminFilter</filter-name>
     <filter-class>com.filters.AdminFilter</filter-class>
