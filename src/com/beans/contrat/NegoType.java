@@ -9,6 +9,10 @@ public enum NegoType {
   		this.type=type;
   	}
   	
+  	public static NegoType parse(String s){
+  		if (s.equals(Achat)) return Achat;
+  		else return Vente;
+  	}
     public String toString(){
         return type;
      }

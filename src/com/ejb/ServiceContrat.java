@@ -37,11 +37,12 @@ public class ServiceContrat {
 
 	}
 
-	public Action creationAction(Societe s, double prix){
+	public Action creationAction(int idsoc, double prix){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
-		Action a=(Action) (new ActifFactory()).getActif("Action");
+		Societe soc=(Societe) session.get(com.beans.Societe.class,idsoc);
+		Action a=(Action) creationActif(soc,"Action");
 		a.setPrix(prix);
 		session.save(a);
 		tx.commit();
@@ -49,13 +50,15 @@ public class ServiceContrat {
 		return a;
 	}
 
-	public StockOption creationOption(Societe s, Date maturite, double strike){
+	public StockOption creationOption(int idsoc, Date maturite, double strike){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-
-		StockOption s1=(StockOption) (new ActifFactory()).getActif("Option");
+		
+		Societe soc=(Societe) session.get(com.beans.Societe.class,idsoc);
+		StockOption s1=(StockOption) creationActif(soc,"StockOption");
 		s1.setMaturite(maturite);
 		s1.setStrike(strike);
+		s1.setSoc(soc);
 		session.save(s1);
 		tx.commit();
 		session.close();
@@ -82,7 +85,7 @@ public class ServiceContrat {
 		return cd;
 	}
 
-	public ContratEnchere creationContratEnchere(Investisseur initiateur,Date dateLimite, Actif a, int qte, double prixDepart, NegoType n){
+	public ContratEnchere creationContratEnchere(Investisseur initiateur, Actif a,Date dateLimite, int qte, double prixDepart, NegoType n){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
