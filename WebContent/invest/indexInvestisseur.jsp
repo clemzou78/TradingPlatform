@@ -167,7 +167,7 @@
                         <a href="charts.html"><i class="fa fa-fw fa-dashboard"></i> En cours de négociation</a>
                     </li>
                     <li>
-                        <a href="contrats.jsp"><i class="fa fa-fw fa-money"></i> Voir/Vendre des contrats</a>
+                        <a href="contrats.jsp"><i class="fa fa-fw fa-money"></i>Marché OTC</a>
                     </li>
                    
                 </ul>

@@ -162,12 +162,29 @@
                     </li>
                     <li>
                         <a href="index.html"><i class="fa fa-fw fa-building"></i> Sociétés</a>
-                    </li>
+                    </li>                    
                     <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-dashboard"></i> En cours de négociation</a>
-                    </li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-money"></i>Marché OTC<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse" aria-expanded="false" style="height: 0px;">
+                            <li>
+                                <a href="#">Voir les offres</a>
+                            </li>
+                            <li>
+                                <a href="#">Créer une offre</a>
+                            </li>
+                        </ul>
+                    </li>                 
+                    
                     <li>
-                        <a href="contrats.jsp"><i class="fa fa-fw fa-money"></i> Voir/Vendre des contrats</a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo2" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-money"></i>En cours<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo2" class="collapse" aria-expanded="false" style="height: 0px;">
+                            <li>
+                                <a href="#">Mes Enchères</a>
+                            </li>
+                            <li>
+                                <a href="#">Mes Offres</a>
+                            </li>
+                        </ul>
                     </li>
                    
                 </ul>

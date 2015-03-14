@@ -13,7 +13,16 @@ public class Contrat {
 	protected Investisseur proposeUser;
 	protected Investisseur accepteUser;
 	protected Date creation;
+	protected boolean fini;
+	
+	public int getIdContrat() {
+		return idContrat;
+	}
 
+	public void setIdContrat(int idContrat) {
+		this.idContrat = idContrat;
+	}
+	
 	public Actif getActif() {
 		return actif;
 	}
@@ -62,6 +71,14 @@ public class Contrat {
 	public void setCreation(Date creation) {
 		this.creation = creation;
 	}
+	
+	public boolean isFini() {
+		return fini;
+	}
+
+	public void setFini(boolean fini) {
+		this.fini = fini;
+	}	
 	
 	public Contrat() {
 		super();

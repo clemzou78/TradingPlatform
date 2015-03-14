@@ -51,7 +51,7 @@ public class SocieteAdd extends HttpServlet {
 		HttpSession s=request.getSession();
 		s.setAttribute("societe", soc);
 		s.setAttribute("pass",pass);
-		request.getRequestDispatcher("attenteValidation.jsp").forward(request, response);
+		request.getRequestDispatcher("confirmSocieteAdd.jsp").forward(request, response);
 		
 	}
 

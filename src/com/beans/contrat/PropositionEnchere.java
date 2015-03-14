@@ -9,7 +9,8 @@ public class PropositionEnchere {
 	Investisseur encherisseur;
 	double montant;
 	private Date dateEnchere;
-	
+	private ContratEnchere contrat;
+		
 	public PropositionEnchere(){
 		
 	}
@@ -36,6 +37,12 @@ public class PropositionEnchere {
 	}
 	public void setDateEnchere(Date dateEnchere) {
 		this.dateEnchere = dateEnchere;
+	}
+	public ContratEnchere getContrat() {
+		return contrat;
+	}
+	public void setContrat(ContratEnchere contrat) {
+		this.contrat = contrat;
 	}
 	
 	
