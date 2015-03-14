@@ -7,7 +7,7 @@ import com.beans.User;
 
 public class ContratEnchere extends Contrat {
 	List<PropositionEnchere> propEnc;
-	double prixDepart; //borne min ou max selon NegoType
+	private double prixDepart; //borne min ou max selon NegoType
 	Date dateFin;
 
 	public ContratEnchere(){
@@ -24,12 +24,19 @@ public class ContratEnchere extends Contrat {
 	public void setPropEnc(List<PropositionEnchere> propEnc) {
 		this.propEnc = propEnc;
 	}
+	public double getPrixDepart() {
+		return prixDepart;
+	}
+	public void setPrixDepart(double prixDepart) {
+		this.prixDepart = prixDepart;
+	}
 	public Date getDateFin() {
 		return dateFin;
 	}
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
+	
 
 }
 
