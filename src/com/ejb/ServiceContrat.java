@@ -246,5 +246,16 @@ public class ServiceContrat {
 		session.close();
 		return ce;
 	}
+	
+	public List<Contrat> getAllTransactionFromSociete(int idSoc){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		String hql = "FROM Contrat c inner join Actif a where c.fini=1 and a.SOC="+idSoc;
+		Query query = session.createQuery(hql);
+		List<Contrat> results = query.list();
+		session.close();
+		return results;
+	}
 
 }
