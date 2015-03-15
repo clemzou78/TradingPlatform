@@ -48,6 +48,13 @@
 <body>
 <script>
 $(document).ready(function(){
+	$("#buttonSubmit").on("click",function(){
+		$("#myModal").modal('show');
+		return false;
+	});
+	$("#confirm").on("click",function(){
+		$("#formAjoutOffre").submit();
+	});
 	$("select[name=idSociete]").change(function(){
 		
 		if($(this).val()==0){
@@ -83,7 +90,7 @@ $(document).ready(function(){
 	$("select[name=nego]").on("change",function(){
 		
 		if($(this).val()==0){
-			$("#etape4").hide()
+			$("#etape4").hide();
 			$("#etapeOption").hide();
 			$("#etapeAction").hide()
 		}
@@ -95,10 +102,14 @@ $(document).ready(function(){
 		
 		if($(this).val()==0){
 			$("#etapeOption").hide();
-			$("#etapeAction").hide()
+			$("#etapeAction").hide();
+			$("#buttonSubmit").hide();
 		}
-		else if($("select[name=typeActif]").val()=="Action") $("#etapeAction").slideDown("fast");
-		else $("#etapeOption").slideDown("fast");
+		else{ 
+			$("#buttonSubmit").show();
+			if($("select[name=typeActif]").val()=="Action") $("#etapeAction").slideDown("fast");
+			else $("#etapeOption").slideDown("fast");
+		}
 	});
 });
 </script>
@@ -275,7 +286,7 @@ $(document).ready(function(){
                 <!-- /.row -->
                 <div class="row">
                 	<div class="col-lg-6">
-                		<form action="OffreAdd" method="post">
+                		<form action="OffreAdd" method="post" id="formAjoutOffre">
                 			<div class="form-group" id="etape1">
                 				<label>Entreprise</label>
                 				<select name="idSociete" class="form-control">
@@ -348,15 +359,15 @@ $(document).ready(function(){
                 			<div id="etapeAction" style="display:none" class="well">
                 				<div class="form-group" >
 	                				<label>Quantite</label>
-	                				<input type="text" name="quantite2" class="form-control"/>
+	                				<input type="text" name="quantite2" class="form-control" required="required"/>
 	                			</div>
 	                			<div class="form-group">
 	                				<label>Prix</label>
-	                				<input type="text" name="prix2" class="form-control"/>
+	                				<input type="text" name="prix2" class="form-control" required="required"/>
 	                			</div>
                 			</div>
                 			
-                			<button type="submit" class="btn btn-success">Ajouter l'offre</button>
+                			<button data-toggle="modal" data-target="#myModal" style="display:none"  id="buttonSubmit" class="btn btn-success">Ajouter l'offre</button>
                 		</form>
                 	</div>
                 </div>
@@ -373,7 +384,23 @@ $(document).ready(function(){
 
     </div>
     <!-- /#wrapper -->
-
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Confirmez-vous l'ajout de l'offre ? </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary" id="confirm">Confirmer</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
     
 
 </body>

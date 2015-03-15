@@ -260,6 +260,7 @@ $(document).ready(function(){
                 				</tr>
                 			</thead>
                 			<tbody>
+                				<% List lc=request.getAttribute("listContrats"); %>
                 				<tr>
                 					<td>Bouygues</td>
                 					<td>BOUY</td>
