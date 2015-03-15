@@ -1,3 +1,12 @@
+<%@ page import="com.beans.contrat.Contrat" %>
+<%@ page import="com.beans.contrat.NegoType" %>
+<%@ page import="com.beans.contrat.ContratEnchere" %>
+<%@ page import="com.beans.contrat.ContratDirect" %>
+<%@ page import="java.text.*" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<% Contrat c= (Contrat) request.getAttribute("contrat");%>
+<%= c.getIdContrat()%>
+
 <%@ page import="java.util.*" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
@@ -239,7 +248,7 @@ $(document).ready(function(){
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Offres en cours
+                            Offre - Référence : <%= c.getIdContrat() %>
                         </h1>
                         
                     </div>
@@ -247,59 +256,58 @@ $(document).ready(function(){
                 <!-- /.row -->
                 <div class="row">
                 	<div class="col-lg-12">
-                		<table id="offres" class="table table-bordered table-hover table-striped">
-                			<thead>
-                				<tr>
-                					<th class="no-sort"></th>
-                					<th>Société</th>
-                					<th>Mnémo</th>
-                					<th>Type Actif</th>
-                					<th>Quantité</th>
-                					<th class="no-sort"><select name="venteAchat"><option value="">Vente/Achat(tous)</option><option value="Vente">Vente</option><option value="Achat">Achat</option></select></th>
-                					<th class="no-sort"><select name="typeContrat"><option value="">Type Contrat (Tous)</option><option value="Direct">Direct</option><option value="Enchère">Enchère</option></select></th>
-                					<th>Prix</th>
-                					<th>Investisseur</th>
-                					<th>Date Fin</th>
-                					<th class="no-sort">Temps restant</th>
-                					<th class="no-sort">Action</th>
-                				</tr>
-                			</thead>
-                			<tbody>
-                				<% ArrayList<ArrayList<String>> aa=(ArrayList<ArrayList<String>>)request.getAttribute("listContrats"); 
-                				for (ArrayList<String> a : aa){
-                					int i=0;
-                				
-                				%>                	
-                				<tr>
-                					<td>
-                					<% if (a.get(5).equals("Enchère")) {%>
-                					<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                					<%} else{%>
-                					<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-                					<%} %>
-                					</td>
-                					<td><%= a.get(i++) %></td>
-                					<td><%= a.get(i++) %></td>
-                					<% String color; if(a.get(i).equals("Action"))  color="#33B5B0"; else color="#7169E4"; %>
-                					<td style="text-align:center"><span class="badge" style="background-color:<%= color%>"><%= a.get(i++) %></span></td>
-                					<td><%= a.get(i++) %></td>
-                					<% String color2; if(a.get(i).equals("Achat"))  color2="#B22828"; else color2="#5BAB55"; %>
-                					<td style="text-align:center"><span class="badge" style="background-color:<%= color2%>"><%= a.get(i++) %></span></td>
-                					<td><%= a.get(i++) %></td>                					
-                					<td style="text-align:right"><%= a.get(i++) %> €</td>
-                					<td><%= a.get(i++) %></td>
-                					<td><%= a.get(i++) %></td>
-                					<td><% if(!a.get(i).equals("")){ %>
-                						<span class="badge">Temps restant : <%= a.get(i) %></span>
-                					<%} %></td>
-                					<td style="text-align:center">
-                					
-                					<a class="btn btn-success" href="Offre?id=<%= a.get(a.size()-1) %>">Voir</a></td>
-                				</tr>
-                				<%}
-                				%>                				
-                			</tbody>
-                		</table>
+                		<% 
+                				DecimalFormat formatter = new DecimalFormat("###,###,###.00");
+                				String moneyString = formatter.format(c.getPrix());
+								ContratEnchere c2=null;
+                				String type;
+                				if(c instanceof ContratEnchere) type="Enchère";
+                				else type="Direct";                			
+                			%>
+                			<%
+                				String txt="";
+                				if(c.getTypeN()==NegoType.Achat && type.equals("Enchère"))
+                					txt="L'investisseur souhaite acheter l'actif au meilleur prix. Proposez un prix plus bas que les concurrents !";
+                				else if(c.getTypeN()==NegoType.Achat && type.equals("Direct"))
+                					txt="L'investisseur souhaiter acheter l'actif au prix indiqué. Cela vous intéresse-t-il ?";
+                				else if(c.getTypeN()==NegoType.Vente && type.equals("Direct"))
+                					txt="L'investisseur souhaiter vendre l'actif au prix indiqué. Preneur ?";
+                				else if(c.getTypeN()==NegoType.Vente && type.equals("Enchère"))
+                					txt="L'investisseur souhaiter vendre l'actif au meilleur prix. Que le meilleur gagne !";
+                			%>
+                			
+                			<p><span class="badge" style="font-size:1.4em"><%= txt %></span></p>
+                		<div class="well">
+                			
+                			<p style="font-size:1.2em"><%
+                				if(type.equals("Enchère")){
+                				c2=(ContratEnchere) c;
+                				SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd à hh:mm");
+                				String formate=formatter2.format(c2.getDateFin());                				
+                			%>
+                				<u>Enchère se terminant le <b><%= formate %></b></u>
+                			<%
+                			}else{%>
+                				Contrat Direct                			
+                			<%} %></p>
+                			<p>Entreprise : <%=c.getActif().getSoc().getNom() %> (<%= c.getActif().getSoc().getMnemo() %>) - <a href="#">Voir l'historique</a></p>
+                			<p>Type de contrat : <%= c.getTypeN().toString() %></p>
+                			<p>Proposé par : <%= c.getProposeUser().getPrenom()+" "+c.getProposeUser().getNom() %>
+                			<%if(type=="Enchère"){
+                				String moneyString2 = formatter.format(c2.getPrixDepart());
+                			%>
+                				<p>Prix de départ : <%=moneyString2 %>
+                			<%} %>
+                			<p>Prix Actuel : <%=moneyString %> €</p>
+                			<% if(type.equals("Enchère")){%>
+                				<p>Proposition : <input type="number" style="width:100px"/></p>
+                				<button class="btn btn-success" type="submit">Enchérir</button>
+                			<%}
+                			else{%>
+                				<button class="btn btn-success" type="submit">Accepter</button>
+                			<%} %>
+                			<p>
+                		</div>
                 	</div>
                 </div>
 
