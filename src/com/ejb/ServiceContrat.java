@@ -34,7 +34,7 @@ public class ServiceContrat {
 	 * Default constructor. 
 	 */
 
-	
+
 
 	public ServiceContrat() {
 		// TODO Auto-generated constructor stub
@@ -64,7 +64,7 @@ public class ServiceContrat {
 	public StockOption creationOption(int idsoc, Date maturite, double strike){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		
+
 		Societe soc=(Societe) session.get(com.beans.Societe.class,idsoc);
 		StockOption s1=(StockOption) creationActif(soc,"StockOption");
 		s1.setMaturite(maturite);
@@ -110,7 +110,7 @@ public class ServiceContrat {
 		ce.setTypeN(n);
 		ce.setCreation(Calendar.getInstance().getTime());
 
-		
+
 
 
 		session.save(ce);
@@ -120,20 +120,20 @@ public class ServiceContrat {
 		InitialContext initialContext;
 		try {
 			Properties properties = new Properties();
-            properties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
-            initialContext = new InitialContext(properties);
+			properties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+			initialContext = new InitialContext(properties);
 			EnchereRemote er = (EnchereRemote) initialContext.lookup("java:global/ApplicationTrading/FinEnchere!com.ejb.EnchereRemote");
-            //EnchereRemote servicesCompte = (EnchereRemote) initialContext.lookup("java:global/EJB/Enchere!com.timer.EnchereRemote");
+			//EnchereRemote servicesCompte = (EnchereRemote) initialContext.lookup("java:global/EJB/Enchere!com.timer.EnchereRemote");
 
- 
+
 			er.createTimer(ce.getDateFin(),ce.getIdContrat());
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-		
-		
+
+
 		return ce;
 	}
 
@@ -147,24 +147,42 @@ public class ServiceContrat {
 			throw new OffrePerime();
 		}
 		PropositionEnchere pmax=valeurGagnanteEnchere(ce);
-		if(pmax==null || (ce.getTypeN()==NegoType.Achat?montant>pmax.getMontant():montant<pmax.getMontant())){
 
+		if(pmax!=null ){
+			if( (ce.getTypeN()==NegoType.Achat?montant<pmax.getMontant():montant>pmax.getMontant()))
+			{
+				PropositionEnchere pe=new PropositionEnchere();
+				pe.setContrat(ce);
+				pe.setMontant(montant);
+				pe.setDateEnchere(Calendar.getInstance().getTime());
+				pe.setEncherisseur(encherisseur);
+				ce.getPropEnc().add(pe);
+				session.save(pe);
+				tx.commit();
 
+				session.close();
+				return pe;
+			}
+			else{
+				session.close();
+				throw new EnchereInvalide(pmax.getMontant()+"");
+			}
+		}
+		else
+		{
 			PropositionEnchere pe=new PropositionEnchere();
 			pe.setContrat(ce);
 			pe.setMontant(montant);
 			pe.setDateEnchere(Calendar.getInstance().getTime());
 			pe.setEncherisseur(encherisseur);
+			ce.getPropEnc().add(pe);
 			session.save(pe);
 			tx.commit();
 
 			session.close();
 			return pe;
 		}
-		else{
-			session.close();
-			throw new EnchereInvalide(pmax.getMontant()+"");
-		}
+		
 	}
 
 	public PropositionEnchere valeurGagnanteEnchere(ContratEnchere ce){
@@ -173,7 +191,7 @@ public class ServiceContrat {
 		System.out.println("SIZE LISTE "+ ce.getPropEnc().size());
 		for(int i=0;i<ce.getPropEnc().size();i++){
 			PropositionEnchere tmp=ce.getPropEnc().get(i);
-			if(ce.getTypeN()==NegoType.Achat){
+			if(ce.getTypeN()==NegoType.Vente){
 				if(tmp.getMontant()>c){
 					m=tmp;
 					c=tmp.getMontant();
@@ -189,24 +207,25 @@ public class ServiceContrat {
 		}
 		return m;
 	}
-	
+
 	public ContratDirect fin(int idcd,int iduser) throws OffrePerime{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		
-		
+
+
 		ContratDirect ce=(ContratDirect) session.get(com.beans.contrat.ContratDirect.class,idcd);
-		
+
 		if(ce.isFini()){
 			session.close();
 			throw new OffrePerime();
 		}
-		
+
 		ce.setFini(true);
+		ce.setDateTransaction(new Date());
 		ce.setAccepteUser((Investisseur) session.get(com.beans.Investisseur.class, iduser));
 		tx.commit();
 		session.close();
-		
+
 		return ce;
 	}
 
@@ -220,15 +239,17 @@ public class ServiceContrat {
 		session.close();
 		return results;
 	}
-	
+
 	public ContratEnchere fin(int idce){
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
 		ContratEnchere ce=(ContratEnchere) session.get(com.beans.contrat.ContratEnchere.class,idce);
+		System.out.println("IDCONTRAT " + ce.getPropEnc().size());
 		if (ce.getPropEnc().size()!=0){
 			PropositionEnchere pe = valeurGagnanteEnchere(ce);
+			System.out.println("PROP " +pe.getIdProposition());
 			ce.setAccepteUser(pe.getEncherisseur());
 		}
 		ce.setFini(true);
@@ -237,20 +258,20 @@ public class ServiceContrat {
 		return ce;
 
 	}
-	
+
 	public Contrat getById(int idContrat){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		
+
 		Contrat ce=(Contrat) session.get(com.beans.contrat.Contrat.class,idContrat);
 		session.close();
 		return ce;
 	}
-	
+
 	public List<Contrat> getAllTransactionFromSociete(int idSoc){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		
+
 		String hql = "FROM Contrat c inner join Actif a where c.fini=1 and a.SOC="+idSoc;
 		Query query = session.createQuery(hql);
 		List<Contrat> results = query.list();

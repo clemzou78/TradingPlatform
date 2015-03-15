@@ -283,7 +283,7 @@ $(document).ready(function(){
                 			<p style="font-size:1.2em"><%
                 				if(type.equals("Enchère")){
                 				c2=(ContratEnchere) c;
-                				SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd à hh:mm");
+                				SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd à HH:mm");
                 				String formate=formatter2.format(c2.getDateFin());                				
                 			%>
                 				<u>Enchère se terminant le <b><%= formate %></b></u>
@@ -311,14 +311,16 @@ $(document).ready(function(){
                 				<p>Prix de départ : <%=moneyString2 %> €
                 			<%} %>
                 			<form action="ValidOffre" method="post">
+                			<input type="hidden" name="idContrat" value="<%= c.getIdContrat() %>"/>
+                			<input type="hidden" name="typeContrat" value="<%=type %>"/>
                 			<p>Prix Actuel : <%=moneyString %> €</p>
                 			<% if(type.equals("Enchère")){%>
-                				<input type="hidden" name="idContrat" value="<%= c.getIdContrat() %>"/>
-                				<input type="hidden" name="typeContrat" value="<%=type %>"/>
+                				
                 				<p>Proposition : <input type="number" name="valeur" style="width:100px"/></p>
                 				<button class="btn btn-success" type="submit">Enchérir</button>
                 			<%}
                 			else{%>
+                				<input type="hidden" name="valeur" value="<%= ((ContratDirect)c).getPrix()%>"/>
                 				<button class="btn btn-success" type="submit">Accepter</button>
                 			<%} %>
                 			<p>

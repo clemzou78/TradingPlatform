@@ -12,11 +12,15 @@ public class DateDiff {
 		
 		Calendar d2=Calendar.getInstance();
 		
-		long reste = d2.getTimeInMillis()-d.getTimeInMillis();
+		long reste = d.getTimeInMillis()-d2.getTimeInMillis();
+		d2.setTimeInMillis(reste);
+		d2.add(Calendar.HOUR_OF_DAY, -1);
 		reste=reste/1000;
-		d2.set(Calendar.SECOND, (int) reste);
+
+	
+		System.out.println(d2);
 		
-		int days = (int) (reste/216000);
+		int days = (int) (reste/86400);
 		return days +"j," + d2.get(Calendar.HOUR_OF_DAY)+"h," + d2.get(Calendar.MINUTE)+"m,"+d2.get(Calendar.SECOND)+"s";
 		
 	}
