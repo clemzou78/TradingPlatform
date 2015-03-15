@@ -3,6 +3,8 @@ package com.beans.contrat;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Remote;
+
 import com.beans.User;
 
 public class ContratEnchere extends Contrat {
