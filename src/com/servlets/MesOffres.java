@@ -91,7 +91,7 @@ public class MesOffres extends HttpServlet {
 
 
 		request.setAttribute( "listContrats", l);
-		this.getServletContext().getRequestDispatcher( "/invest/offres.jsp" ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( "/invest/mesOffres.jsp" ).forward( request, response );
 
 	}
 
