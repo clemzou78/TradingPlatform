@@ -86,6 +86,14 @@
     <servlet-class>com.servlets.Offres</servlet-class>
   </servlet>
   <servlet-mapping>
+    <servlet-name>Offre</servlet-name>
+    <url-pattern>/invest/Offre</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Offre</servlet-name>
+    <servlet-class>com.servlets.Offre</servlet-class>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>ValidProfile</servlet-name>
     <url-pattern>/invest/ValidProfile</url-pattern>
   </servlet-mapping>
