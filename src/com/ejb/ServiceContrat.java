@@ -2,10 +2,15 @@ package com.ejb;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
 
+import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -26,6 +31,9 @@ public class ServiceContrat {
 	/**
 	 * Default constructor. 
 	 */
+
+	
+
 	public ServiceContrat() {
 		// TODO Auto-generated constructor stub
 	}
@@ -99,15 +107,29 @@ public class ServiceContrat {
 		ce.setQuantite(qte);
 		ce.setTypeN(n);
 		ce.setCreation(Calendar.getInstance().getTime());
-		//TODO SET TIMER
+
+		
+
 
 		session.save(ce);
 		tx.commit();
 		session.close();
-		
-		
-		FinEnchere fe=new FinEnchere(ce);
-		fe.createTimer(ce.getDateFin());
+
+		InitialContext initialContext;
+		try {
+			Properties properties = new Properties();
+            properties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+            initialContext = new InitialContext(properties);
+			EnchereRemote er = (EnchereRemote) initialContext.lookup("java:global/ApplicationTrading/FinEnchere!com.ejb.EnchereRemote");
+            //EnchereRemote servicesCompte = (EnchereRemote) initialContext.lookup("java:global/EJB/Enchere!com.timer.EnchereRemote");
+
+ 
+			er.createTimer(ce.getDateFin(),ce.getIdContrat());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		
 		
 		return ce;
@@ -146,6 +168,7 @@ public class ServiceContrat {
 	public PropositionEnchere valeurGagnanteEnchere(ContratEnchere ce){
 		PropositionEnchere m=null;
 		double c=ce.getPrixDepart();
+		System.out.println("SIZE LISTE "+ ce.getPropEnc().size());
 		for(int i=0;i<ce.getPropEnc().size();i++){
 			PropositionEnchere tmp=ce.getPropEnc().get(i);
 			if(ce.getTypeN()==NegoType.Achat){
@@ -191,9 +214,13 @@ public class ServiceContrat {
 		Transaction tx = session.beginTransaction();
 
 		ContratEnchere ce=(ContratEnchere) session.get(com.beans.contrat.ContratEnchere.class,idce);
-		ce.setAccepteUser(valeurGagnanteEnchere(ce).getEncherisseur());
+		if (ce.getPropEnc().size()!=0){
+			PropositionEnchere pe = valeurGagnanteEnchere(ce);
+			ce.setAccepteUser(pe.getEncherisseur());
+		}
 		ce.setFini(true);
 		tx.commit();
+		session.close();
 		return ce;
 
 	}
