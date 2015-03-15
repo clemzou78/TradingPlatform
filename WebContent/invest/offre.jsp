@@ -2,6 +2,7 @@
 <%@ page import="com.beans.contrat.NegoType" %>
 <%@ page import="com.beans.contrat.ContratEnchere" %>
 <%@ page import="com.beans.contrat.ContratDirect" %>
+<%@ page import="com.beans.contrat.StockOption" %>
 <%@ page import="java.text.*" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <% Contrat c= (Contrat) request.getAttribute("contrat");%>
@@ -293,6 +294,16 @@ $(document).ready(function(){
                 			<p>Entreprise : <%=c.getActif().getSoc().getNom() %> (<%= c.getActif().getSoc().getMnemo() %>) - <a href="#">Voir l'historique</a></p>
                 			<p>Type de contrat : <%= c.getTypeN().toString() %></p>
                 			<p>Proposé par : <%= c.getProposeUser().getPrenom()+" "+c.getProposeUser().getNom() %>
+                			<% if(c.getActif() instanceof StockOption){
+                				SimpleDateFormat formatter3= new SimpleDateFormat("yyyy-MM-dd");
+                				String dateMat=formatter3.format(((StockOption)(c.getActif())).getMaturite());
+                			
+                			%>  <p>Maturité : <%= dateMat %>
+                				<p>Strike : <%= ((StockOption)(c.getActif())).getStrike() %>
+                			<%}
+                			else{%>
+       							        				
+                			<%} %>
                 			<%if(type=="Enchère"){
                 				String moneyString2 = formatter.format(c2.getPrixDepart());
                 			%>
