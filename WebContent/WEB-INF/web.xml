@@ -78,6 +78,20 @@
     <servlet-class>com.servlets.ValidProfile</servlet-class>
   </servlet>
   <servlet-mapping>
+    <servlet-name>ValidProfile</servlet-name>
+    <url-pattern>/invest/ValidProfile</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ValidateProfile</servlet-name>
+    <servlet-class>com.servlets.ValidateProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidateProfile</servlet-name>
+    <url-pattern>/admin/ValidateProfile</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
     <servlet-name>Offres</servlet-name>
     <url-pattern>/invest/Offres</url-pattern>
   </servlet-mapping>
@@ -101,10 +115,6 @@
     <servlet-name>ValidOffre</servlet-name>
     <servlet-class>com.servlets.ValidOffre</servlet-class>
   </servlet>
-  <servlet-mapping>
-    <servlet-name>ValidProfile</servlet-name>
-    <url-pattern>/invest/ValidProfile</url-pattern>
-  </servlet-mapping>
   <filter>
     <filter-name>AdminFilter</filter-name>
     <filter-class>com.filters.AdminFilter</filter-class>
@@ -112,5 +122,13 @@
   <filter-mapping>
     <filter-name>AdminFilter</filter-name>
     <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>InvestFilter</filter-name>
+    <filter-class>com.filters.InvestFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>InvestFilter</filter-name>
+    <url-pattern>/invest/*</url-pattern>
   </filter-mapping>
 </web-app>

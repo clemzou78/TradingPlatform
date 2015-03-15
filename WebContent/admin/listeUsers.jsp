@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <%@ page import="com.ejb.ServiceUser"%>
+<%@ page import="com.ejb.ServiceInvestisseur"%>
 <%@ page import="com.beans.User"%>
+<%@ page import="com.beans.Investisseur"%>
 <%@ page import="com.beans.UserType"%>
 <%@ page import="java.util.*"%>
 <%
@@ -153,16 +155,37 @@
 									<tr>
 										<th>Username</th>
 										<th>Type</th>
+										<th>Nom</th>
+										<th>Prénom</th>
+										<th>Adresse</th>
+										<th>Pays</th>
+										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
 									<%
 										for (int i = 0; i < listUsers.size(); i++) {
 											UserType type = ((User) listUsers.get(i)).getType();
+											String nom="",prenom="",adresse="",pays="",action="";
+											if(type.toString().equals("Investisseur")){
+												ServiceInvestisseur si=new ServiceInvestisseur();
+												Investisseur inv=si.getByIdUser( ((User) listUsers.get(i)).getId());
+												nom=inv.getNom();
+												prenom=inv.getPrenom();
+												adresse=inv.getAdresse()+" "+inv.getCodePostal()+" "+inv.getVille();
+												pays=inv.getPays();
+												action="<a href=\"ValidateProfil?id="+inv.getIdInvestisseur()+"\" class=\"btn btn-success\">Valider</a>";
+											}
+												
 									%>
 									<tr>
 										<td><%=((User) listUsers.get(i)).getUsername()%></td>
 										<td><%=type.toString()%></td>
+										<td><%=nom %></td>
+										<td><%=prenom %></td>
+										<td><%=adresse %></td>
+										<td><%=pays %></td>
+										<td><%=action %></td>
 									</tr>
 									<%
 										}

@@ -1,7 +1,10 @@
+<%@page import="com.ejb.ServiceInvestisseur"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page import="com.beans.User" %>
     <%@ page import="com.beans.UserType" %>
+    <%@ page import="com.ejb.ServiceInvestisseur" %>
+     <%@ page import="com.beans.Investisseur" %>
 <% if (session.getAttribute("sessionUser") == null) { %>
 <jsp:include page="connect.jsp"></jsp:include>
 <%} else{ User u=(User)session.getAttribute("sessionUser");
@@ -11,8 +14,16 @@
 		response.setHeader("Location", site); 
 }
 	else if(u.getType()==UserType.Investisseur){
-		String site = "invest/completeProfil.jsp" ;
-		response.setStatus(response.SC_MOVED_TEMPORARILY);
-		response.setHeader("Location", site); 
+		Investisseur i=(new ServiceInvestisseur()).getByIdUser(u.getId());
+		if(!i.isValidate() && i.getAdresse().equals("")){
+			String site = "invest/completeProfil.jsp" ;
+			response.setStatus(response.SC_MOVED_TEMPORARILY);
+			response.setHeader("Location", site); 
+		}
+		else if(!i.isValidate()){
+			String site = "invest/attenteProfil.jsp" ;
+			response.setStatus(response.SC_MOVED_TEMPORARILY);
+			response.setHeader("Location", site); 
+		}
 	}
-	}%>
+}%>

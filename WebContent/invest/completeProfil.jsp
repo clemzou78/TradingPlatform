@@ -198,7 +198,7 @@
 					OTC !</h1>
 				<div class="row">
 					<div class="col-lg-6">
-						<form>
+						<form method="post" action="ValidProfile">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Nom</label> <input
 									type="text" class="form-control"  placeholder="Nom" name="nom" value="<%= i.getNom()%>" required="required">
