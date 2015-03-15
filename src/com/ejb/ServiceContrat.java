@@ -246,10 +246,8 @@ public class ServiceContrat {
 		Transaction tx = session.beginTransaction();
 
 		ContratEnchere ce=(ContratEnchere) session.get(com.beans.contrat.ContratEnchere.class,idce);
-		System.out.println("IDCONTRAT " + ce.getPropEnc().size());
 		if (ce.getPropEnc().size()!=0){
 			PropositionEnchere pe = valeurGagnanteEnchere(ce);
-			System.out.println("PROP " +pe.getIdProposition());
 			ce.setAccepteUser(pe.getEncherisseur());
 		}
 		ce.setFini(true);
