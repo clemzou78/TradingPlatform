@@ -269,12 +269,15 @@ $(document).ready(function(){
                 				<tr>
                 					<td><%= a.get(i++) %></td>
                 					<td><%= a.get(i++) %></td>
+                					<% String color; if(a.get(i).equals("Action"))  color="#33B5B0"; else color="#7169E4"; %>
+                					<td style="text-align:center"><span class="badge" style="background-color:<%= color%>"><%= a.get(i++) %></span></td>
+                					<td><%= a.get(i++) %></td>
+                					<% String color2; if(a.get(i).equals("Achat"))  color2="#B22828"; else color2="#5BAB55"; %>
+                					<td style="text-align:center"><span class="badge" style="background-color:<%= color2%>"><%= a.get(i++) %></span></td>
                 					<td><%= a.get(i++) %></td>
                 					<td><%= a.get(i++) %></td>
                 					<td><%= a.get(i++) %></td>
-                					<td><%= a.get(i++) %></td>
-                					<td><%= a.get(i++) %></td>
-                					<td><button class="btn btn-success">Voir</button></td>
+                					<td style="text-align:center"><button class="btn btn-success">Voir</button></td>
                 				</tr>
                 				<%}
                 				%>                				

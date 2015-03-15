@@ -51,7 +51,7 @@
 	        <property name="dateFin" type="java.util.Date">
 	            <column name="DATEFIN" />
 	        </property>
-	        <list name="propEnc" inverse="false" table="PROPOSITIONENCHERE" lazy="true">
+	        <list name="propEnc" inverse="false" table="PROPOSITIONENCHERE" lazy="false">
 	            <key>
 	                <column name="PRIXDEPART" />
 	            </key>
