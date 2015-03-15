@@ -42,6 +42,14 @@
     <url-pattern>/InvestissorAdd</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>OffreAdd</servlet-name>
+    <servlet-class>com.servlets.OffreAdd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OffreAdd</servlet-name>
+    <url-pattern>/invest/OffreAdd</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>SocieteAdd</servlet-name>
     <servlet-class>com.servlets.SocieteAdd</servlet-class>
   </servlet>

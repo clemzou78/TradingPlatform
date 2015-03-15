@@ -275,7 +275,7 @@ $(document).ready(function(){
                 <!-- /.row -->
                 <div class="row">
                 	<div class="col-lg-6">
-                		<form action="offreAdd" method="post">
+                		<form action="OffreAdd" method="post">
                 			<div class="form-group" id="etape1">
                 				<label>Entreprise</label>
                 				<select name="idSociete" class="form-control">
@@ -329,11 +329,11 @@ $(document).ready(function(){
                 			<div id="etapeOption" style="display:none" class="well">
                 				<div class="form-group" >
 	                				<label>Quantite</label>
-	                				<input type="text" name="quantite" class="form-control"/>
+	                				<input type="text" name="quantite1" class="form-control"/>
 	                			</div>
 	                			<div class="form-group" >
 	                				<label>Prix</label>
-	                				<input type="text" name="prix" class="form-control"/>
+	                				<input type="text" name="prix1" class="form-control"/>
 	                			</div>
 	                			<div class="form-group"  >
 	                				<label>Maturité</label>
@@ -348,11 +348,11 @@ $(document).ready(function(){
                 			<div id="etapeAction" style="display:none" class="well">
                 				<div class="form-group" >
 	                				<label>Quantite</label>
-	                				<input type="text" name="quantite" class="form-control"/>
+	                				<input type="text" name="quantite2" class="form-control"/>
 	                			</div>
 	                			<div class="form-group">
 	                				<label>Prix</label>
-	                				<input type="text" name="prix" class="form-control"/>
+	                				<input type="text" name="prix2" class="form-control"/>
 	                			</div>
                 			</div>
                 			

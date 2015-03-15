@@ -59,7 +59,7 @@ public class OffreAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession s=request.getSession();
-		Investisseur initiateur = (new ServiceInvestisseur()).getByIdUser(  ((User) s.getAttribute("username")).getId());
+		Investisseur initiateur = (new ServiceInvestisseur()).getByIdUser(  ((User) s.getAttribute("sessionUser")).getId());
 
 
 		String soc = request.getParameter("idSociete");
@@ -68,8 +68,8 @@ public class OffreAdd extends HttpServlet {
 		
 		String typeContrat=request.getParameter("typeContrat");
 
-		String prix=request.getParameter("prix");
-		String qte=request.getParameter("quantite");
+		String prix=request.getParameter("prix1").equals("") ? request.getParameter("prix2") : request.getParameter("prix1");
+		String qte=request.getParameter("quantite1").equals("") ? request.getParameter("quantite2") : request.getParameter("quantite1");
 
 		String typeActif=request.getParameter("typeActif");
 
@@ -81,7 +81,7 @@ public class OffreAdd extends HttpServlet {
 		Actif a;
 		// creation de l'actif
 		
-		if(typeActif.equals("Actif")){
+		if(typeActif.equals("Action")){
 			a=sc.creationAction(Integer.parseInt(soc), Double.parseDouble(prix));
 		}
 		else{

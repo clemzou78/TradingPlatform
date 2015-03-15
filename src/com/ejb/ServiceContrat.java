@@ -3,6 +3,7 @@ package com.ejb;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -103,7 +104,8 @@ public class ServiceContrat {
 		session.save(ce);
 		tx.commit();
 		session.close();
-
+		
+		
 		FinEnchere fe=new FinEnchere(ce);
 		fe.createTimer(ce.getDateFin());
 		
