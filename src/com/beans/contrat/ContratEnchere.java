@@ -38,6 +38,9 @@ public class ContratEnchere extends Contrat {
 	}
 	
 
+	
+	
+
 }
 
 

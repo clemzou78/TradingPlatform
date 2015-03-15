@@ -104,6 +104,10 @@ public class ServiceContrat {
 		tx.commit();
 		session.close();
 
+		FinEnchere fe=new FinEnchere(ce);
+		fe.createTimer(ce.getDateFin());
+		
+		
 		return ce;
 	}
 
