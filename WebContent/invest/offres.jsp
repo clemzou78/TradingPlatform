@@ -1,4 +1,5 @@
 <%@ page import="java.util.*" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +53,7 @@ $(document).ready(function(){
 	    }],
 	    initComplete: function () {
 		    var api=this.api();
-		    var column=api.column(5);
+		    var column=api.column(6);
 		    $("select[name=typeContrat]").change(function(){
 				var val=$(this).val();
 				column
@@ -60,7 +61,7 @@ $(document).ready(function(){
                 .draw();
 			});
 		    var api=this.api();
-			var column2=api.column(4);
+			var column2=api.column(5);
 			$("select[name=venteAchat]").change(function(){
 				var val2=$(this).val();
 				column2
@@ -195,16 +196,16 @@ $(document).ready(function(){
                     	<a href="index.html"> Accueil</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-building"></i> Sociétés</a>
+                        <a href="index.html"><i class="fa fa-fw fa-building"></i> SociÃ©tÃ©s</a>
                     </li>                    
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-money"></i> Marché OTC<i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-money"></i> MarchÃ© OTC<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse" aria-expanded="false" style="height: 0px;">
                             <li>
                                 <a href="#">Voir les offres</a>
                             </li>
                             <li>
-                                <a href="#">Créer une offre</a>
+                                <a href="#">CrÃ©er une offre</a>
                             </li>
                         </ul>
                     </li>                 
@@ -213,7 +214,7 @@ $(document).ready(function(){
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo2" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-money"></i> En cours<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo2" class="collapse" aria-expanded="false" style="height: 0px;">
                             <li>
-                                <a href="#">Mes Enchères</a>
+                                <a href="#">Mes EnchÃ¨res</a>
                             </li>
                             <li>
                                 <a href="#">Mes Offres</a>
@@ -249,15 +250,18 @@ $(document).ready(function(){
                 		<table id="offres" class="table table-bordered table-hover table-striped">
                 			<thead>
                 				<tr>
-                					<th>Société</th>
-                					<th>Mnémo</th>
+                					<th class="no-sort"></th>
+                					<th>SociÃ©tÃ©</th>
+                					<th>MnÃ©mo</th>
                 					<th>Type Actif</th>
-                					<th>Quantité</th>
+                					<th>QuantitÃ©</th>
                 					<th class="no-sort"><select name="venteAchat"><option value="">Vente/Achat(tous)</option><option value="Vente">Vente</option><option value="Achat">Achat</option></select></th>
-                					<th class="no-sort"><select name="typeContrat"><option value="">Type Contrat (Tous)</option><option value="Direct">Direct</option><option value="Enchère">Enchère</option></select></th>
+                					<th class="no-sort"><select name="typeContrat"><option value="">Type Contrat (Tous)</option><option value="Direct">Direct</option><option value="EnchÃ¨re">EnchÃ¨re</option></select></th>
                 					<th>Prix</th>
                 					<th>Investisseur</th>
-                					<th>Action</th>
+                					<th>Date Fin</th>
+                					<th class="no-sort">Temps restant</th>
+                					<th class="no-sort">Action</th>
                 				</tr>
                 			</thead>
                 			<tbody>
@@ -267,6 +271,13 @@ $(document).ready(function(){
                 				
                 				%>                	
                 				<tr>
+                					<td>
+                					<% if (a.get(5).equals("EnchÃ¨re")) {%>
+                					<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                					<%} else{%>
+                					<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                					<%} %>
+                					</td>
                 					<td><%= a.get(i++) %></td>
                 					<td><%= a.get(i++) %></td>
                 					<% String color; if(a.get(i).equals("Action"))  color="#33B5B0"; else color="#7169E4"; %>
@@ -274,10 +285,16 @@ $(document).ready(function(){
                 					<td><%= a.get(i++) %></td>
                 					<% String color2; if(a.get(i).equals("Achat"))  color2="#B22828"; else color2="#5BAB55"; %>
                 					<td style="text-align:center"><span class="badge" style="background-color:<%= color2%>"><%= a.get(i++) %></span></td>
+                					<td><%= a.get(i++) %></td>                					
+                					<td style="text-align:right"><%= a.get(i++) %> â‚¬</td>
                 					<td><%= a.get(i++) %></td>
                 					<td><%= a.get(i++) %></td>
-                					<td><%= a.get(i++) %></td>
-                					<td style="text-align:center"><button class="btn btn-success">Voir</button></td>
+                					<td><% if(!a.get(i).equals("")){ %>
+                						<span class="badge">Temps restant : <%= a.get(i) %></span>
+                					<%} %></td>
+                					<td style="text-align:center">
+                					
+                					<a class="btn btn-success">Voir</button></td>
                 				</tr>
                 				<%}
                 				%>                				

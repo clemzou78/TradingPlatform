@@ -2,6 +2,8 @@ package com.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,14 +62,24 @@ public class Offres extends HttpServlet {
 			l2.add(c.getActif() instanceof Action?"Action":"Option" );
 			l2.add(c.getQuantite()+"");
 			l2.add(c.getTypeN().toString());
-			l2.add(c instanceof ContratEnchere?"Enchere":"Direct");
-			l2.add(c.getPrix()+"");
+			l2.add(c instanceof ContratEnchere?"Enchère":"Direct");
+			DecimalFormat formatter = new DecimalFormat("###,###,###.00");
+			String moneyString = formatter.format(c.getPrix());
+			l2.add(moneyString);
 			l2.add(c.getProposeUser().getNom()+" "+c.getProposeUser().getPrenom());
+			
 			if (c instanceof ContratEnchere) {
 				String s1=DateDiff.format(((ContratEnchere) c).getDateFin());
-
+				SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+				String formate=formatter2.format( ((ContratEnchere) c).getDateFin() );
+				l2.add(formate);
 				l2.add( s1 );
 			}
+			else{
+				l2.add("");
+				l2.add("");
+			}
+			l2.add(c.getIdContrat()+"");
 		}
 
 
