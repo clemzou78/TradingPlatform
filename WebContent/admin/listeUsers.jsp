@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page import="com.ejb.ServiceUser"%>
 <%@ page import="com.beans.User"%>
 <%@ page import="com.beans.UserType"%>
 <%@ page import="java.util.*"%>
@@ -141,7 +142,8 @@
 
 				<div class="row" style="margin-top: 10px">
 					<%
-						List listUsers = User.getAllUsers();
+						ServiceUser su=new ServiceUser();
+						List listUsers = su.getAllUsers();
 					%>
 					<div class="col-lg-12">
 						<div class="table-responsive">

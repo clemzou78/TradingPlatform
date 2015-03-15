@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>ApplicationTrading</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>test.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
@@ -33,8 +33,7 @@
     <servlet-name>Connexion</servlet-name>
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>InvestissorAdd</servlet-name>
     <servlet-class>com.servlets.InvestissorAdd</servlet-class>
   </servlet>
@@ -42,7 +41,14 @@
     <servlet-name>InvestissorAdd</servlet-name>
     <url-pattern>/InvestissorAdd</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>OffreAdd</servlet-name>
+    <servlet-class>com.servlets.OffreAdd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OffreAdd</servlet-name>
+    <url-pattern>/invest/OffreAdd</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>SocieteAdd</servlet-name>
     <servlet-class>com.servlets.SocieteAdd</servlet-class>
@@ -51,9 +57,7 @@
     <servlet-name>SocieteAdd</servlet-name>
     <url-pattern>/admin/SocieteAdd</url-pattern>
   </servlet-mapping>
-  
-  
-    <servlet>
+  <servlet>
     <servlet-name>SocieteAddAccueil</servlet-name>
     <servlet-class>com.servlets.SocieteAddAccueil</servlet-class>
   </servlet>
@@ -61,7 +65,6 @@
     <servlet-name>SocieteAddAccueil</servlet-name>
     <url-pattern>/SocieteAddAccueil</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ValidateSociete</servlet-name>
     <servlet-class>com.servlets.ValidateSociete</servlet-class>
@@ -70,7 +73,30 @@
     <servlet-name>ValidateSociete</servlet-name>
     <url-pattern>/admin/validateSociete</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>ValidProfile</servlet-name>
+    <servlet-class>com.servlets.ValidProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Offres</servlet-name>
+    <url-pattern>/invest/Offres</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Offres</servlet-name>
+    <servlet-class>com.servlets.Offres</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Offre</servlet-name>
+    <url-pattern>/invest/Offre</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Offre</servlet-name>
+    <servlet-class>com.servlets.Offre</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidProfile</servlet-name>
+    <url-pattern>/invest/ValidProfile</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>AdminFilter</filter-name>
     <filter-class>com.filters.AdminFilter</filter-class>

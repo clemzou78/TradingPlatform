@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -19,6 +19,7 @@ import org.hibernate.*;
 
 //
 import com.connection.HibernateUtil;
+import com.util.Hash;
 
 
 
@@ -28,7 +29,7 @@ public class User {
 	private int id;
 	private String username;
 	private String password;
-	private int dateCreated;
+	private Date dateCreated;
 	private UserType type;
 	
 	
@@ -60,11 +61,11 @@ public class User {
 		this.password = password;
 	}
 
-	public int getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(int dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -77,22 +78,11 @@ public class User {
 	}
 
 
-	public static User recupByName(String username){
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = session.beginTransaction();
 
-		String hql = "FROM User u WHERE u.username = '"+username+"'";
-		Query query = session.createQuery(hql);
-		List results = query.list();
-		
-		session.close();
-		if (results.size()==0) return null;
-		return (User) results.get(0);
-	}
 
 	public String checkPw(String password) {
 		try{
-			String sha256hex = sha256(password);
+			String sha256hex = Hash.sha256(password);
 			if (this.getPassword().equals(sha256hex)) return 1+"";
 			else return 0+"";
 		}catch (Exception e) {
@@ -104,35 +94,9 @@ public class User {
 	public void update(){
 		
 	}
+
 	
-	public static String sha256(String base) {
-	    try{
-	        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-	        byte[] hash = digest.digest(base.getBytes("UTF-8"));
-	        StringBuffer hexString = new StringBuffer();
-
-	        for (int i = 0; i < hash.length; i++) {
-	            String hex = Integer.toHexString(0xff & hash[i]);
-	            if(hex.length() == 1) hexString.append('0');
-	            hexString.append(hex);
-	        }
-	        return hexString.toString();
-	    } catch(Exception ex){
-	       throw new RuntimeException(ex);
-	    }
-	}
 	
-	static public List getAllUsers(){
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = session.beginTransaction();
-
-		String hql = "FROM User u";
-		Query query = session.createQuery(hql);
-		List results = query.list();
-		session.close();
-		return results;
-
-	}
 
 
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.beans.Societe;
+import com.ejb.ServiceSociete;
 import com.util.RandomStringGenerator;
 
 /**
@@ -42,9 +43,10 @@ public class SocieteAdd extends HttpServlet {
 		String nom = request.getParameter("nom" );
 		String mnemo = request.getParameter("mnemo");
 		String description = request.getParameter("description");
+		String email=request.getParameter("email");
 		String pass=RandomStringGenerator.generateRandomString(10, RandomStringGenerator.Mode.ALPHANUMERIC);
-				
-		Societe soc=Societe.createSociete(nom, mnemo, description,pass);
+		ServiceSociete ss=new ServiceSociete();
+		Societe soc=ss.createSociete(nom, mnemo, description,email,pass);
 		
 		HttpSession s=request.getSession();
 		s.setAttribute("societe", soc);

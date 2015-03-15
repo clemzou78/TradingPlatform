@@ -11,9 +11,18 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
         
+        <!-- property name="hibernate.hbm2ddl.auto">create</property -->
+        
+        
          <!-- mapping files -->
         <mapping resource="com/beans/User.hbm.xml"/>
         <mapping resource="com/beans/Societe.hbm.xml"/>
         <mapping resource="com/beans/Investisseur.hbm.xml"/>
+        <mapping resource="com/beans/contrat/Actif.hbm.xml"/>
+        <mapping resource="com/beans/contrat/Contrat.hbm.xml"/>
+        <mapping resource="com/beans/contrat/PropositionEnchere.hbm.xml"/>
+        
+        
+        
     </session-factory>
 </hibernate-configuration>

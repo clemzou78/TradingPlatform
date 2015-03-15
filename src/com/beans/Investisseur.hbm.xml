@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12 mars 2015 23:25:33 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 14 mars 2015 00:37:28 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.beans.Investisseur" table="INVESTISSEUR">
-        <id name="idInvestisseur" type="int" access="field">
+        <id name="idInvestisseur" type="int">
             <column name="IDINVESTISSEUR" />
-            <generator class="increment" />
+            <generator class="increment"/>
         </id>
         <property name="nom" type="java.lang.String">
             <column name="NOM" />
@@ -14,9 +14,26 @@
         <property name="prenom" type="java.lang.String">
             <column name="PRENOM" />
         </property>
-        <many-to-one name="userInvestor" class="com.beans.User" unique="true">
-            <column name="idUser" />
+        <many-to-one name="userInvestor" class="com.beans.User" fetch="join">
+            <column name="iduser" />
         </many-to-one>
-        
+        <property name="validate" type="boolean">
+            <column name="VALIDATE" />
+        </property>
+        <property name="adresse" type="java.lang.String">
+            <column name="ADRESSE" />
+        </property>
+        <property name="codePostal" type="java.lang.String">
+            <column name="CODEPOSTAL" />
+        </property>
+        <property name="ville" type="java.lang.String">
+            <column name="VILLE" />
+        </property>
+        <property name="pays" type="java.lang.String">
+            <column name="PAYS" />
+        </property>
+        <property name="telephone" type="java.lang.String">
+            <column name="TELEPHONE" />
+        </property>
     </class>
 </hibernate-mapping>

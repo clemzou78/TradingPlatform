@@ -2,6 +2,7 @@
 <%@ page import="com.beans.Societe"%>
 <%@ page import="com.beans.User"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.ejb.*"%>
 <%
 	User u = (User) session.getAttribute("sessionUser");
 %>
@@ -153,7 +154,8 @@
 
 				<div class="row" style="margin-top: 10px">
 					<%
-						List listSociete = Societe.getAllSociete();
+						ServiceSociete ss=new ServiceSociete();
+						List listSociete = ss.getAllSociete();
 					%>
 					<div class="col-lg-12">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -174,7 +176,7 @@
 									<%
 										for (int i = 0; i < listSociete.size(); i++) {
 											String chaine=((Societe) listSociete.get(i)).getDescription();
-											String description=chaine.substring(0,(chaine.length()<250?chaine.length():300))+"  [...]";%>
+											String description=chaine.length()>=400 ? chaine.substring(0,(chaine.length()<250?chaine.length():400))+"  [...]" : chaine;%>
 									<tr>
 										<td><%=((Societe) listSociete.get(i)).getMnemo()%></td>
 										<td><%=((Societe) listSociete.get(i)).getNom()%></td>
@@ -190,7 +192,8 @@
 						
 						<div  id="tab2" class="tab-pane fade" style="display:none;margin-top:20px" role="tabpanel" aria-labelledby="link_tab_2" >
 						<%
-						List listSociete2 = Societe.getSocieteAValider();
+						
+						List listSociete2 = ss.getSocieteSelonEtat(0);
 						%>
 							<table id="table2" class="table table-bordered table-hover table-striped">
 								<thead>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13 mars 2015 22:59:57 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.beans.contrat.Actif" table="ACTIF" abstract="true">
+        <id name="idActif" type="int" access="field">
+            <column name="IDACTIF" />
+            <generator class="increment" />
+        </id>
+        
+        <many-to-one name="soc" class="com.beans.Societe" access="field" fetch="join">
+            <column name="SOC" />
+        </many-to-one>
+        
+        
+        <joined-subclass name="com.beans.contrat.Action" extends="com.beans.contrat.Actif">
+        <key column="IDACTIF"/>
+	        <property name="prix" type="double" access="field">
+	            <column name="PRIX" />
+	        </property>
+    	</joined-subclass>  
+    	  <joined-subclass name="com.beans.contrat.StockOption" extends="com.beans.contrat.Actif">
+    	  <key column="IDACTIF"/>
+		        <property name="maturite" type="java.util.Date" access="field">
+		            <column name="MATURITE" />
+		        </property>
+		        <property name="strike" type="double" access="field">
+		            <column name="STRIKE" />
+		        </property>
+    </joined-subclass>
+    </class>
+</hibernate-mapping>

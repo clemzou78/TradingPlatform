@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 mars 2015 10:34:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.beans.contrat.Contrat" table="CONTRAT">
+        <id name="idContrat" type="int" access="field">
+            <column name="IDCONTRAT" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="actif" class="com.beans.contrat.Actif" fetch="join" lazy="false">
+            <column name="ACTIF" />
+        </many-to-one>
+        
+        
+        <property name="quantite" type="int">
+            <column name="QUANTITE" />
+        </property>
+        
+        
+        <property name="typeN">
+            <column name="TYPEN" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">com.beans.contrat.NegoType</param>
+            </type>
+        </property>
+        <many-to-one name="proposeUser" class="com.beans.Investisseur" fetch="join" lazy="false">
+            <column name="PROPOSEUSER" />
+        </many-to-one>
+        <many-to-one name="accepteUser" class="com.beans.Investisseur" fetch="join" lazy="false">
+            <column name="ACCEPTEUSER" />
+        </many-to-one>
+        <property name="creation" type="java.util.Date" access="field">
+            <column name="CREATION" />
+        </property>
+
+        <property name="fini" type="boolean">
+            <column name="FINI" />
+        </property>
+        
+        
+        
+	     <joined-subclass name="com.beans.contrat.ContratEnchere" extends="com.beans.contrat.Contrat" table="CONTRATENCHERE" lazy="false">
+	        <key>
+	            <column name="IDCONTRAT" />
+	        </key>
+	        <property name="prixDepart" type="double" access="field">
+	            <column name="PRIXDEPART" />
+	        </property>
+	        <property name="dateFin" type="java.util.Date">
+	            <column name="DATEFIN" />
+	        </property>
+	        <list name="propEnc" inverse="false" table="PROPOSITIONENCHERE" lazy="false">
+	            <key>
+	                <column name="PRIXDEPART" />
+	            </key>
+	            <list-index></list-index>
+	            <one-to-many class="com.beans.contrat.PropositionEnchere" />
+	        </list>
+	    </joined-subclass>
+	    
+	    <joined-subclass name="com.beans.contrat.ContratDirect" extends="com.beans.contrat.Contrat" table="CONTRATDIRECT" lazy="false">
+	        <key>
+	            <column name="IDCONTRAT" />
+	        </key>
+	        <property name="dateTransaction" type="java.util.Date">
+	            <column name="DATETRANSACTION" />
+	        </property>
+	        <property name="prix" type="double" access="field">
+	            <column name="PRIX" />
+	        </property>
+	    </joined-subclass>
+    
+    
+    </class>
+</hibernate-mapping>
+
+

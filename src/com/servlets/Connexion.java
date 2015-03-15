@@ -19,6 +19,7 @@ import org.hibernate.Transaction;
 import com.beans.User;
 import com.beans.UserType;
 import com.connection.HibernateUtil;
+import com.ejb.ServiceUser;
 /* TEST GIT */
 // TEST MOI
 // DEUXIEME TEST
@@ -38,8 +39,8 @@ public class Connexion extends HttpServlet {
 		Session session2 = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session2.beginTransaction();
 		
-
-		User u=User.recupByName(username);
+		ServiceUser su=new ServiceUser();
+		User u=su.recupByName(username);
 		if(u!=null){
 			String b=u.checkPw(motDePasse);
 			out.println(b);

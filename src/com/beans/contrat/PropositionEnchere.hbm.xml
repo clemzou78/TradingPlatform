@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14 mars 2015 17:25:12 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping default-lazy="false">
+ <class name="com.beans.contrat.PropositionEnchere" table="PROPOSITIONENCHERE">
+  <id name="idProposition" type="int">
+   <column name="IDPROPOSITION"/>
+   <generator class="increment"/>
+  </id>
+  <many-to-one class="com.beans.Investisseur" fetch="join" name="encherisseur">
+   <column name="ENCHERISSEUR"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="montant" type="double">
+   <column name="MONTANT"/>
+  </property>
+  <property generated="never" lazy="false" name="dateEnchere" type="java.util.Date">
+   <column name="DATEENCHERE"/>
+  </property>
+  <many-to-one class="com.beans.contrat.ContratEnchere" fetch="join" name="contrat">
+   <column name="CONTRAT"/>
+  </many-to-one>
+ </class>
+</hibernate-mapping>
