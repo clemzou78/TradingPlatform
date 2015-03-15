@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.beans.contrat.Actif;
+import com.beans.contrat.Action;
 import com.beans.contrat.Contrat;
+import com.beans.contrat.ContratEnchere;
 import com.ejb.ServiceContrat;
 
 
@@ -43,6 +47,19 @@ public class Offres extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServiceContrat sc=new ServiceContrat();
 		List<Contrat> lc=sc.getOffreEnCours();
+		ArrayList< ArrayList <String> > l =new ArrayList< ArrayList <String >>();
+		for(int i=0;i<lc.size();i++){
+			ArrayList<String> l2=new ArrayList<String>();
+			l.add(l2);
+			Contrat c = lc.get(i);
+			l2.add(c.getActif().getSoc().getNom());
+			l2.add(c.getActif().getSoc().getMnemo());
+			l2.add(c.getActif() instanceof Action?"Action":"Option" );
+			l2.add(c.getTypeN().toString());
+			l2.add(c instanceof ContratEnchere?"Enchere":"Direct");
+			l2.add(c.getProposeUser().getNom()+" "+c.getProposeUser().getPrenom());
+			
+		}
 		request.setAttribute( "listContrats", lc);
 		this.getServletContext().getRequestDispatcher( "/invest/offres.jsp" ).forward( request, response );
 	}
