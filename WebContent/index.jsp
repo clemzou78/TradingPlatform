@@ -9,19 +9,19 @@
 <jsp:include page="connect.jsp"></jsp:include>
 <%} else{ User u=(User)session.getAttribute("sessionUser");
 	if(u.getType()==UserType.Administrateur){
-		String site = "admin/indexAdmin.jsp" ;
+		String site = "/ApplicationTrading/admin/indexAdmin.jsp" ;
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
-		response.setHeader("Location", site); 
+		response.setHeader("Location", site);
 }
 	else if(u.getType()==UserType.Investisseur){
 		Investisseur i=(new ServiceInvestisseur()).getByIdUser(u.getId());
 		if(!i.isValidate() && i.getAdresse().equals("")){
-			String site = "invest/completeProfil.jsp" ;
+			String site = "/ApplicationTrading/invest/completeProfil.jsp" ;
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site); 
 		}
 		else if(!i.isValidate()){
-			String site = "invest/attenteProfil.jsp" ;
+			String site = "/ApplicationTrading/invest/attenteProfil.jsp" ;
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site); 
 		}

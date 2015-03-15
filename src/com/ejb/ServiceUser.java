@@ -50,5 +50,4 @@ public class ServiceUser {
 		if (results.size()==0) return null;
 		return (User) results.get(0);
 	}
-
 }
