@@ -83,6 +83,8 @@ public class Contrat {
 	public Contrat() {
 		super();
 	}
+	
+	public double getPrix(){return 0;}
 
 
 

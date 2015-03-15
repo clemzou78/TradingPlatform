@@ -60,7 +60,7 @@ public class Offres extends HttpServlet {
 			l2.add(c.getQuantite()+"");
 			l2.add(c.getTypeN().toString());
 			l2.add(c instanceof ContratEnchere?"Enchere":"Direct");
-			l2.add(c.get);
+			l2.add(c.getPrix()+"");
 			l2.add(c.getProposeUser().getNom()+" "+c.getProposeUser().getPrenom());
 			
 		}
