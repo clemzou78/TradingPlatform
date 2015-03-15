@@ -1,7 +1,6 @@
 package com.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,21 +9,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.beans.Societe;
-import com.ejb.ServiceSociete;
-import com.util.RandomStringGenerator;
+import com.beans.Investisseur;
+import com.beans.User;
+import com.ejb.ServiceContrat;
+import com.ejb.ServiceInvestisseur;
+import com.exceptions.EnchereInvalide;
+import com.exceptions.OffrePerime;
 
 /**
- * Servlet implementation class SocieteAdd
+ * Servlet implementation class Encherir
  */
-@WebServlet("/SocieteAddAccueil")
-public class SocieteAddAccueil extends HttpServlet {
+@WebServlet("/AchatDirect")
+public class AchatDirect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SocieteAddAccueil() {
+    public AchatDirect() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,12 +42,24 @@ public class SocieteAddAccueil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String societe = request.getParameter("societe" );
-		String mnemo = request.getParameter("mnemo");
-		String description = request.getParameter("description");
-		String mail = request.getParameter("email");
-		ServiceSociete ss = new ServiceSociete();
-		Societe soc=ss.createSocieteStandBy(societe, mnemo, description,mail);
+		
+		int idcd=Integer.parseInt(request.getParameter("idContrat"));
+		double montant=Double.parseDouble(request.getParameter("montant"));
+		HttpSession s=request.getSession();
+		Investisseur encherisseur = (new ServiceInvestisseur()).getByIdUser(  ((User) s.getAttribute("sessionUser")).getId());
+		
+		
+		ServiceContrat sc=new ServiceContrat();
+
+
+		try {
+			sc.fin(idcd, encherisseur.getIdInvestisseur());
+		} catch (OffrePerime e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
 	}
 
 }

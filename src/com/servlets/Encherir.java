@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.beans.Investisseur;
+import com.beans.User;
 import com.ejb.ServiceContrat;
 import com.ejb.ServiceInvestisseur;
 import com.exceptions.EnchereInvalide;
@@ -46,12 +47,14 @@ public class Encherir extends HttpServlet {
 		double montant=Double.parseDouble(request.getParameter("montant"));
 		
 		ServiceInvestisseur si=new ServiceInvestisseur();
-		Investisseur encherisseur = si.getByIdUser(Integer.parseInt(request.getParameter("sessionUser")));
+		
+		HttpSession s=request.getSession();
+		Investisseur encherisseur = (new ServiceInvestisseur()).getByIdUser(  ((User) s.getAttribute("sessionUser")).getId());
 		
 		
 		ServiceContrat sc=new ServiceContrat();
 
-		HttpSession s=request.getSession();
+
 
 		try {
 			sc.encherir(idce, montant, encherisseur);
