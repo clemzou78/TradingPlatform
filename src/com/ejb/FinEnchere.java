@@ -9,6 +9,7 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
+import javax.ejb.TimerService;
 
 import com.beans.contrat.ContratEnchere;
 
@@ -16,23 +17,21 @@ import javax.ejb.Remote;
 
 
 @Stateless
-public class FinEnchere implements FinEnchereInterface{
+public class FinEnchere{
 	
 	@Resource
-	private SessionContext context;
+    TimerService timerService;
 
-	ContratEnchere ce;
+	public ContratEnchere ce;
 	
 	public FinEnchere(){
 	}
 	
-	public FinEnchere(ContratEnchere ce) {
-		this.ce=ce;
-	}
+
 	
 	public void createTimer(Date dateFinEnchere) {
 		
-		   context.getTimerService().createTimer(dateFinEnchere, "Cretion timer enchère "+ce);
+		timerService.createTimer(dateFinEnchere, "Cretion timer enchère "+ce);
 		}
 
 
