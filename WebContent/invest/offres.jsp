@@ -1,3 +1,4 @@
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -260,95 +261,23 @@ $(document).ready(function(){
                 				</tr>
                 			</thead>
                 			<tbody>
-                				<% List lc=request.getAttribute("listContrats"); %>
+                				<% ArrayList<ArrayList<String>> aa=(ArrayList<ArrayList<String>>)request.getAttribute("listContrats"); 
+                				for (ArrayList<String> a : aa){
+                					int i=0;
+                				
+                				%>                	
                 				<tr>
-                					<td>Bouygues</td>
-                					<td>BOUY</td>
-                					<td>Action</td>
-                					<td>200</td>
-                					<td>Vente</td>
-                					<td>Enchère</td>
-                					<td>2569</td>
-                					<td>Mickael Tran</td>
-                					<td><button class="btn btn-success">Wouhou</button></td>
+                					<td><%= a.get(i++) %></td>
+                					<td><%= a.get(i++) %></td>
+                					<td><%= a.get(i++) %></td>
+                					<td><%= a.get(i++) %></td>
+                					<td><%= a.get(i++) %></td>
+                					<td><%= a.get(i++) %></td>
+                					<td><%= a.get(i++) %></td>
+                					<td><button class="btn btn-success">Voir</button></td>
                 				</tr>
-                				<tr>
-                					<td>Bouygues</td>
-                					<td>BOUY</td>
-                					<td>Action</td>
-                					<td>200</td>
-                					<td>Vente</td>
-                					<td>Enchère</td>
-                					<td>2569</td>
-                					<td>Mickael Tran</td>
-                					<td><button class="btn btn-success">Wouhou</button></td>
-                				</tr>
-                				<tr>
-                					<td>Bouygues</td>
-                					<td>BOUY</td>
-                					<td>Action</td>
-                					<td>200</td>
-                					<td>Vente</td>
-                					<td>Enchère</td>
-                					<td>2569</td>
-                					<td>Mickael Tran</td>
-                					<td><button class="btn btn-success">Wouhou</button></td>
-                				</tr>
-                				<tr>
-                					<td>Bouygues</td>
-                					<td>BOUY</td>
-                					<td>Action</td>
-                					<td>200</td>
-                					<td>Vente</td>
-                					<td>Enchère</td>
-                					<td>2569</td>
-                					<td>Mickael Tran</td>
-                					<td><button class="btn btn-success">Wouhou</button></td>
-                				</tr>
-                				<tr>
-                					<td>Bouygues</td>
-                					<td>BOUY</td>
-                					<td>Action</td>
-                					<td>200</td>
-                					<td>Vente</td>
-                					<td>Enchère</td>
-                					<td>2569</td>
-                					<td>Mickael Tran</td>
-                					<td><button class="btn btn-success">Wouhou</button></td>
-                				</tr>
-                				<tr>
-                					<td>Bouygues</td>
-                					<td>BOUY</td>
-                					<td>Action</td>
-                					<td>1233</td>
-                					<td>Achat</td>
-                					<td>Direct</td>
-                					<td>2569</td>
-                					<td>Mickael Tran</td>
-                					<td><button class="btn btn-success">Wouhou</button></td>
-                				</tr>
-                				<tr>
-                					<td>Bouygues</td>
-                					<td>BOUY</td>
-                					<td>Action</td>
-                					<td>200</td>
-                					<td>Vente</td>
-                					<td>direct</td>
-                					<td>2569</td>
-                					<td>Mickael Tran</td>
-                					<td><button class="btn btn-success">Wouhou</button></td>
-                				</tr>
-                				<tr>
-                					<td>Bouygues</td>
-                					<td>BOUY</td>
-                					<td>Action</td>
-                					<td>200</td>
-                					<td>Achat</td>
-                					<td>Direct</td>
-                					<td>2569</td>
-                					<td>Mickael Tran</td>
-                					<td><button class="btn btn-success">Wouhou</button></td>
-                				</tr>
+                				<%}
+                				%>                				
                 			</tbody>
                 		</table>
                 	</div>
