@@ -2,6 +2,7 @@ package com.ejb;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.annotation.ManagedBean;
@@ -12,6 +13,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -208,6 +210,17 @@ public class ServiceContrat {
 		return ce;
 	}
 
+	public List<Contrat> getOffreEnCours(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+
+		String hql = "FROM Contrat c where c.fini=0";
+		Query query = session.createQuery(hql);
+		List<Contrat> results = query.list();
+		session.close();
+		return results;
+	}
+	
 	public ContratEnchere fin(int idce){
 
 		Session session = HibernateUtil.getSessionFactory().openSession();

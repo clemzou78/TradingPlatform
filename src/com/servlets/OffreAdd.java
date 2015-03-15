@@ -35,7 +35,7 @@ import com.util.RandomStringGenerator;
 /**
  * Servlet implementation class SocieteAdd
  */
-@WebServlet("/SocieteAdd")
+@WebServlet("/OffreAdd")
 public class OffreAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
