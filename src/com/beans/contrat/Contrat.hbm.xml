@@ -51,12 +51,12 @@
 	        <property name="dateFin" type="java.util.Date">
 	            <column name="DATEFIN" />
 	        </property>
-	        <list name="propEnc" inverse="false" table="PROPOSITIONENCHERE" lazy="false">
+	        <list name="propEnc"  cascade="delete" inverse="false" table="PROPOSITIONENCHERE" lazy="false">
 	            <key>
 	                <column name="PRIXDEPART" />
 	            </key>
 	            <list-index></list-index>
-	            <one-to-many class="com.beans.contrat.PropositionEnchere" />
+	            <one-to-many  class="com.beans.contrat.PropositionEnchere" />
 	        </list>
 	    </joined-subclass>
 	    

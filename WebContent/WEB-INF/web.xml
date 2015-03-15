@@ -115,6 +115,16 @@
     <servlet-name>ValidOffre</servlet-name>
     <servlet-class>com.servlets.ValidOffre</servlet-class>
   </servlet>
+  
+  <servlet>
+    <servlet-name>MesOffres</servlet-name>
+    <servlet-class>com.servlets.MesOffres</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MesOffres</servlet-name>
+    <url-pattern>/invest/MesOffres</url-pattern>
+  </servlet-mapping>
+  
   <filter>
     <filter-name>AdminFilter</filter-name>
     <filter-class>com.filters.AdminFilter</filter-class>
@@ -131,4 +141,6 @@
     <filter-name>InvestFilter</filter-name>
     <url-pattern>/invest/*</url-pattern>
   </filter-mapping>
+  
+  
 </web-app>
