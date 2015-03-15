@@ -63,7 +63,7 @@ public class ValidOffre extends HttpServlet {
 					sc.fin(idce, encherisseur.getIdInvestisseur());
 			} catch (OffrePerime e) {
 	
-		
+				e.printStackTrace();
 				
 			} catch (EnchereInvalide e) {
 				
