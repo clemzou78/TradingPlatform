@@ -48,7 +48,7 @@ public class ValidOffre extends HttpServlet {
 		int idce=Integer.parseInt(request.getParameter("idContrat"));
 		String type=request.getParameter("typeContrat");
 		double montant=Double.parseDouble(request.getParameter("valeur"));
-		
+		System.out.println(type);
 		ServiceInvestisseur si=new ServiceInvestisseur();
 		
 		HttpSession s=request.getSession();
@@ -57,10 +57,10 @@ public class ValidOffre extends HttpServlet {
 		
 		ServiceContrat sc=new ServiceContrat();
 		try {
-				if(type.equals("Enchère"))
-					sc.encherir(idce, montant, encherisseur);
+				if(type.equals("Direct"))
+					sc.fin(idce, encherisseur.getIdInvestisseur());					
 				else
-					sc.fin(idce, encherisseur.getIdInvestisseur());
+					sc.encherir(idce, montant, encherisseur);
 			} catch (OffrePerime e) {
 	
 				e.printStackTrace();

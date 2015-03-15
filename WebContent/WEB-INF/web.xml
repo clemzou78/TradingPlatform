@@ -95,7 +95,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ValidOffre</servlet-name>
-    <url-pattern>/invest/validOffre</url-pattern>
+    <url-pattern>/invest/ValidOffre</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>ValidOffre</servlet-name>

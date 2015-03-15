@@ -70,7 +70,7 @@ public class Offres extends HttpServlet {
 			
 			if (c instanceof ContratEnchere) {
 				String s1=DateDiff.format(((ContratEnchere) c).getDateFin());
-				SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+				SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String formate=formatter2.format( ((ContratEnchere) c).getDateFin() );
 				l2.add(formate);
 				l2.add( s1 );
