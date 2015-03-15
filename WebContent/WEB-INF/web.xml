@@ -94,6 +94,14 @@
     <servlet-class>com.servlets.Offre</servlet-class>
   </servlet>
   <servlet-mapping>
+    <servlet-name>ValidOffre</servlet-name>
+    <url-pattern>/invest/validOffre</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ValidOffre</servlet-name>
+    <servlet-class>com.servlets.ValidOffre</servlet-class>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>ValidProfile</servlet-name>
     <url-pattern>/invest/ValidProfile</url-pattern>
   </servlet-mapping>

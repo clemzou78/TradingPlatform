@@ -299,8 +299,8 @@ $(document).ready(function(){
                 				String dateMat=formatter3.format(((StockOption)(c.getActif())).getMaturite());
                 				String moneyStrike=formatter.format(((StockOption)(c.getActif())).getStrike());
                 			
-                			%>  <p>Maturité : <%= dateMat %>
-                				<p>Strike : <%= moneyStrike %>
+                			%>  <p>Maturité : <%= dateMat %></p>
+                				<p>Strike : <%= moneyStrike %> €</p>
                 			<%}
                 			else{%>
        							        				
@@ -308,17 +308,21 @@ $(document).ready(function(){
                 			<%if(type=="Enchère"){
                 				String moneyString2 = formatter.format(c2.getPrixDepart());
                 			%>
-                				<p>Prix de départ : <%=moneyString2 %>
+                				<p>Prix de départ : <%=moneyString2 %> €
                 			<%} %>
+                			<form action="ValidOffre" method="post">
                 			<p>Prix Actuel : <%=moneyString %> €</p>
                 			<% if(type.equals("Enchère")){%>
-                				<p>Proposition : <input type="number" style="width:100px"/></p>
+                				<input type="hidden" name="idContrat" value="<%= c.getIdContrat() %>"/>
+                				<input type="hidden" name="typeContrat" value="<%=type %>"/>
+                				<p>Proposition : <input type="number" name="valeur" style="width:100px"/></p>
                 				<button class="btn btn-success" type="submit">Enchérir</button>
                 			<%}
                 			else{%>
                 				<button class="btn btn-success" type="submit">Accepter</button>
                 			<%} %>
                 			<p>
+                			</form>
                 		</div>
                 	</div>
                 </div>
