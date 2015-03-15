@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.beans.Investisseur;
+import com.beans.User;
 import com.ejb.ServiceInvestisseur;
 
 /**
@@ -42,8 +44,11 @@ public class InvestissorAdd extends HttpServlet {
 		String mail = request.getParameter("email");
 		String pass = request.getParameter("password");
 		ServiceInvestisseur si=new ServiceInvestisseur();
-		si.createInvestissor(nom, prenom, mail, pass);
-		
+		Investisseur s=si.createInvestissor(nom, prenom, mail, pass);
+		User u=s.getUserInvestor();
+		HttpSession sess=request.getSession();
+		sess.setAttribute("sessionUser",u);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }

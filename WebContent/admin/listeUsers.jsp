@@ -174,7 +174,9 @@
 												prenom=inv.getPrenom();
 												adresse=inv.getAdresse()+" "+inv.getCodePostal()+" "+inv.getVille();
 												pays=inv.getPays();
-												action="<a href=\"ValidateProfil?id="+inv.getIdInvestisseur()+"\" class=\"btn btn-success\">Valider</a>";
+												if(!inv.isValidate())
+													action="<a href=\"ValidateProfil?id="+inv.getIdInvestisseur()+"\" class=\"btn btn-success\">Valider</a>";
+													else action="<span class=\"badge\">Validé</span>";
 											}
 												
 									%>
