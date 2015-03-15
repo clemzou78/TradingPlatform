@@ -25,6 +25,7 @@ import com.beans.contrat.Contrat;
 import com.beans.contrat.ContratEnchere;
 import com.connection.HibernateUtil;
 import com.ejb.ServiceContrat;
+import com.util.DateDiff;
 
 
 /**
@@ -46,7 +47,7 @@ public class Offres extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		ServiceContrat sc=new ServiceContrat();
 		List<Contrat> lc=sc.getOffreEnCours();
 		ArrayList< ArrayList <String> > l =new ArrayList< ArrayList <String >>();
@@ -62,11 +63,17 @@ public class Offres extends HttpServlet {
 			l2.add(c instanceof ContratEnchere?"Enchere":"Direct");
 			l2.add(c.getPrix()+"");
 			l2.add(c.getProposeUser().getNom()+" "+c.getProposeUser().getPrenom());
-			
+			if (c instanceof ContratEnchere) {
+				String s1=DateDiff.format(((ContratEnchere) c).getDateFin());
+
+				l2.add( s1 );
+			}
 		}
+
+
 		request.setAttribute( "listContrats", l);
 		this.getServletContext().getRequestDispatcher( "/invest/offres.jsp" ).forward( request, response );
-		
+
 	}
 
 	/**
