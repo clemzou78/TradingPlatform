@@ -237,5 +237,14 @@ public class ServiceContrat {
 		return ce;
 
 	}
+	
+	public Contrat getById(int idContrat){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Contrat ce=(Contrat) session.get(com.beans.contrat.Contrat.class,idContrat);
+		session.close();
+		return ce;
+	}
 
 }
