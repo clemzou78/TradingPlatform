@@ -297,9 +297,10 @@ $(document).ready(function(){
                 			<% if(c.getActif() instanceof StockOption){
                 				SimpleDateFormat formatter3= new SimpleDateFormat("yyyy-MM-dd");
                 				String dateMat=formatter3.format(((StockOption)(c.getActif())).getMaturite());
+                				String moneyStrike=formatter.format(((StockOption)(c.getActif())).getStrike());
                 			
                 			%>  <p>Maturité : <%= dateMat %>
-                				<p>Strike : <%= ((StockOption)(c.getActif())).getStrike() %>
+                				<p>Strike : <%= moneyStrike %>
                 			<%}
                 			else{%>
        							        				
