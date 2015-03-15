@@ -6,7 +6,7 @@
     <class name="com.beans.Societe" table="SOCIETE">
         <id name="idSociete" type="int">
             <column name="IDSOCIETE" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="userSociety"  column="IDUSER" class="com.beans.User" not-found="ignore" lazy="proxy"/>
         <property name="description" type="java.lang.String">

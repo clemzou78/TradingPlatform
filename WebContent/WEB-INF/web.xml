@@ -73,6 +73,15 @@
     <servlet-name>ValidProfile</servlet-name>
     <url-pattern>/invest/ValidProfile</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>OffreAdd</servlet-name>
+    <servlet-class>com.servlets.OffreAdd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OffreAdd</servlet-name>
+    <url-pattern>/invest/OffreAdd</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>AdminFilter</filter-name>
     <filter-class>com.filters.AdminFilter</filter-class>

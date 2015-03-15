@@ -275,7 +275,7 @@ $(document).ready(function(){
                 <!-- /.row -->
                 <div class="row">
                 	<div class="col-lg-6">
-                		<form action="offreAdd" method="post">
+                		<form action="OffreAdd" method="post">
                 			<div class="form-group" id="etape1">
                 				<label>Entreprise</label>
                 				<select name="idSociete" class="form-control">
