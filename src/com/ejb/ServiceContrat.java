@@ -293,7 +293,7 @@ public class ServiceContrat {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
-		String hql = "FROM Contrat c inner join ContratEnchere inner join PropositionEnchere pe where c.fini=0 and pe.encherisseur=" + idEncherisseur;
+		String hql = "select distinct s from ContratEnchere s inner join fetch s.propEnc as o where s.fini=0 and o.encherisseur="+idEncherisseur;// where ce.fini=0 and pe.encherisseur=" + idEncherisseur;
 		Query query = session.createQuery(hql);
 		List<Contrat> results = query.list();
 		session.close();

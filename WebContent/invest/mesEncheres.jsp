@@ -239,7 +239,7 @@ $(document).ready(function(){
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Offres en cours
+                            Vos enchères en cours
                         </h1>
                         
                     </div>
