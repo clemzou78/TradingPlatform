@@ -168,7 +168,7 @@ $(document).ready(function(){
                 					<th>Quantité</th>
                 					<th class="no-sort"><select name="venteAchat"><option value="">Vente/Achat(tous)</option><option value="Vente">Vente</option><option value="Achat">Achat</option></select></th>
                 					<th class="no-sort"><select name="typeContrat"><option value="">Type Contrat (Tous)</option><option value="Direct">Direct</option><option value="Enchère">Enchère</option></select></th>
-                					<th>Prix</th>
+                					<th>Prix (en €)</th>
                 					<th>Investisseur</th>
                 					<th>Date Fin</th>
                 					<th class="no-sort">Temps restant</th>
@@ -197,7 +197,7 @@ $(document).ready(function(){
                 					<% String color2; if(a.get(i).equals("Achat"))  color2="#B22828"; else color2="#5BAB55"; %>
                 					<td style="text-align:center"><span class="badge" style="background-color:<%= color2%>"><%= a.get(i++) %></span></td>
                 					<td><%= a.get(i++) %></td>                					
-                					<td style="text-align:right"><%= a.get(i++) %> €</td>
+                					<td style="text-align:right">€<%= a.get(i++) %></td>
                 					<td><%= a.get(i++) %></td>
                 					<td><%= a.get(i++) %></td>
                 					<td><% if(!a.get(i).equals("")){ %>

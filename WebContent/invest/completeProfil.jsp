@@ -74,19 +74,19 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                 	<li class="active">
-                    	<a href="indexInvestisseur.jsp"> Accueil</a>
+                    	<a href="#"> Accueil</a>
                     </li>
                     <li>
-                        <a href="societes.jsp"><i class="fa fa-fw fa-building"></i> Sociétés</a>
+                        <a href="#"><i class="fa fa-fw fa-building"></i> Sociétés</a>
                     </li>                    
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-money"></i> Marché OTC<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse" aria-expanded="false" style="height: 0px;">
                             <li>
-                                <a href="Offres">Voir les offres</a>
+                                <a href="#">Voir les offres</a>
                             </li>
                             <li>
-                                <a href="createOffre.jsp">Créer une offre</a>
+                                <a href="#">Créer une offre</a>
                             </li>
                         </ul>
                     </li>                 
@@ -95,10 +95,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo2" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-money"></i> En cours<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo2" class="collapse" aria-expanded="false" style="height: 0px;">
                             <li>
-                                <a href="MesEncheres">Mes Enchères</a>
+                                <a href="#">Mes Enchères</a>
                             </li>
                             <li>
-                                <a href="MesOffres">Mes Offres</a>
+                                <a href="#">Mes Offres</a>
                             </li>
                         </ul>
                     </li>
@@ -151,7 +151,7 @@
 									placeholder="Prénom" required="required">
 							</div>		
 							<div class="form-group">
-								<label for="exampleInputFile">Téléphone</label> <input name="tel" required="required" type="text" class="form-control" value="<%= i.getTelephone() %>" placeholder="Code Postal">
+								<label for="exampleInputFile">Téléphone</label> <input name="tel" required="required" type="text" class="form-control" value="<%= i.getTelephone() %>" placeholder="Telephone">
 							</div>					
 							<div class="form-group">
 								<label for="exampleInputFile">Adresse complète</label> <input name="adresse" required="required" type="text" class="form-control" value="<%= i.getAdresse() %>" placeholder="Adresse">

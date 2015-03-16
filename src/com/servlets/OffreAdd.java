@@ -119,8 +119,10 @@ public class OffreAdd extends HttpServlet {
 		/*HttpSession s=request.getSession();
 		s.setAttribute("societe", soc);
 		s.setAttribute("pass",pass);
-		request.getRequestDispatcher("confirmSocieteAdd.jsp").forward(request, response);*/
-
+		*/
+		String site = "MesOffres" ;
+		response.setStatus(response.SC_MOVED_TEMPORARILY);
+		response.setHeader("Location", site); 
 	}
 
 }

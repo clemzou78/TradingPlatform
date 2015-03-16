@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,8 +64,11 @@ public class Offres extends HttpServlet {
 			l2.add(c.getQuantite()+"");
 			l2.add(c.getTypeN().toString());
 			l2.add(c instanceof ContratEnchere?"Enchère":"Direct");
-			DecimalFormat formatter = new DecimalFormat("###,###,###.00");
-			String moneyString = formatter.format(c.getPrix());
+			Locale loc=new Locale("en_US");
+			NumberFormat nf = NumberFormat.getNumberInstance(loc);
+			DecimalFormat df = (DecimalFormat)nf;
+			df.applyPattern("###,###.###");
+			String moneyString = df.format(c.getPrix());
 			l2.add(moneyString);
 			l2.add(c.getProposeUser().getNom()+" "+c.getProposeUser().getPrenom());
 			
