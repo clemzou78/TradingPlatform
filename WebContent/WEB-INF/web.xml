@@ -83,12 +83,12 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>ValidateProfile</servlet-name>
-    <servlet-class>com.servlets.ValidateProfile</servlet-class>
+    <servlet-name>ValidateProfil</servlet-name>
+    <servlet-class>com.servlets.ValidateProfil</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ValidateProfile</servlet-name>
-    <url-pattern>/admin/ValidateProfile</url-pattern>
+    <servlet-name>ValidateProfil</servlet-name>
+    <url-pattern>/admin/ValidateProfil</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
