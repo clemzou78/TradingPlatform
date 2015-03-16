@@ -300,6 +300,18 @@ public class ServiceContrat {
 		return results;
 	}
 	
+
+	
+	public List<Contrat> getHistoriqueFini(int idEncherisseur){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction();
+
+		String hql = "select distinct s from Contrat s where s.fini=1 and (s.proposeUser="+idEncherisseur+" or s.accepteUser="+idEncherisseur+")";
+		Query query = session.createQuery(hql);
+		List<Contrat> results = query.list();
+		session.close();
+		return results;
+	}
 	
 
 }
