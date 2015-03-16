@@ -58,7 +58,7 @@ public class MesOffres extends HttpServlet {
 		HttpSession s=request.getSession();
 		Investisseur initiateur = (new ServiceInvestisseur()).getByIdUser(  ((User) s.getAttribute("sessionUser")).getId());
 
-		List<Contrat> lc=sc.getOffreByInvestor(initiateur.getIdInvestisseur());
+		List<Contrat> lc=sc.getOffreByInvestor(initiateur.getIdInvestisseur(),0);
 		ArrayList< ArrayList <String> > l =new ArrayList< ArrayList <String >>();
 		for(int i=0;i<lc.size();i++){
 			ArrayList<String> l2=new ArrayList<String>();

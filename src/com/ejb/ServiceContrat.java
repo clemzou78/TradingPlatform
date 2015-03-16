@@ -277,11 +277,11 @@ public class ServiceContrat {
 		return results;
 	}
 	
-	public List<Contrat> getOffreByInvestor(int idProposeur){
+	public List<Contrat> getOffreByInvestor(int idProposeur, int etat){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
-		String hql = "FROM Contrat c where c.fini=0 and c.proposeUser=" + idProposeur;
+		String hql = "FROM Contrat c where c.fini="+etat+" and c.proposeUser=" + idProposeur;
 		Query query = session.createQuery(hql);
 		List<Contrat> results = query.list();
 		session.close();
@@ -289,15 +289,17 @@ public class ServiceContrat {
 	}
 	
 	
-	public List<Contrat> getEnchereParticipe(int idEncherisseur){
+	public List<Contrat> getEnchereParticipe(int idEncherisseur,int etat){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 
-		String hql = "select distinct s from ContratEnchere s inner join fetch s.propEnc as o where s.fini=0 and o.encherisseur="+idEncherisseur;// where ce.fini=0 and pe.encherisseur=" + idEncherisseur;
+		String hql = "select distinct s from ContratEnchere s inner join fetch s.propEnc as o where s.fini="+etat+" and o.encherisseur="+idEncherisseur;// where ce.fini=0 and pe.encherisseur=" + idEncherisseur;
 		Query query = session.createQuery(hql);
 		List<Contrat> results = query.list();
 		session.close();
 		return results;
 	}
+	
+	
 
 }
