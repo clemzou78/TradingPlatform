@@ -25,5 +25,10 @@
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site); 
 		}
+		else{
+			String site = "/ApplicationTrading/invest/indexInvestisseur.jsp" ;
+			response.setStatus(response.SC_MOVED_TEMPORARILY);
+			response.setHeader("Location", site); 
+		}
 	}
 }%>

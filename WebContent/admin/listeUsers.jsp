@@ -18,7 +18,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin - Bootstrap Admin Template</title>
+<title>TradingPlatform</title>
 <!-- DataTables CSS -->
 
 
@@ -69,6 +69,7 @@
 	<div id="wrapper">
 
 		<!-- Navigation -->
+		<!-- Navigation -->
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
@@ -96,8 +97,8 @@
 				<ul class="nav navbar-nav side-nav">
 					<li><a href="indexAdmin.jsp"><i
 							class="fa fa-fw fa-building"></i> Sociétés</a></li>
-					<li class="'active"><a href="listeUsers.jsp"> <i
-							class="fa fa-fw fa-user"></i> Utilisateurs
+					<li><a href="listeUsers.jsp"> <i class="fa fa-fw fa-user"></i>
+							Utilisateurs
 					</a></li>
 				</ul>
 			</div>

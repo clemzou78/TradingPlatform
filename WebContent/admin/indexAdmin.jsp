@@ -16,7 +16,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin - Bootstrap Admin Template</title>
+<title>TradingPlatform</title>
 
 
 
@@ -102,7 +102,7 @@
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav side-nav">
-					<li class="active"><a href="indexAdmin.jsp"><i
+					<li><a href="indexAdmin.jsp"><i
 							class="fa fa-fw fa-building"></i> Sociétés</a></li>
 					<li><a href="listeUsers.jsp"> <i class="fa fa-fw fa-user"></i>
 							Utilisateurs

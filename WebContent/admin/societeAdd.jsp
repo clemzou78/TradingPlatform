@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>TradingPlatform</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,8 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+       <!-- Navigation -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -55,14 +56,14 @@
 				<ul class="nav navbar-right top-nav">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><i class="fa fa-user"></i> Connecté en
-							tant que <%= u.getUsername() %> <b class="caret"></b></a>
+							tant que <%=u.getUsername()%> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="../deconnexion"><i
 									class="fa fa-fw fa-power-off"></i> Log Out</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav side-nav">
-					<li class="active"><a href="indexAdmin.jsp"><i
+					<li><a href="indexAdmin.jsp"><i
 							class="fa fa-fw fa-building"></i> Sociétés</a></li>
 					<li><a href="listeUsers.jsp"> <i class="fa fa-fw fa-user"></i>
 							Utilisateurs

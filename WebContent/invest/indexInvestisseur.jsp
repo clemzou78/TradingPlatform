@@ -1,3 +1,5 @@
+<%@ page import="com.beans.User" %>
+<% User u=(User)session.getAttribute("sessionUser");%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>TradingPlatform</title>
 	
 	<!-- jQuery -->
     <script src="../js/jquery.js"></script>
@@ -42,6 +44,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
+       <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -54,121 +57,51 @@
                 <a class="navbar-brand" href="index.html">Trading Platform</a>
             </div>
             <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+				<ul class="nav navbar-right top-nav">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><i class="fa fa-user"></i> Connecté en
+							tant que <%=u.getUsername()%> <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="../deconnexion"><i
+									class="fa fa-fw fa-power-off"></i> Log Out</a></li>
+						</ul></li>
+				</ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                 	<li class="active">
-                    	<a href="index.html"><i class="fa fa-fw fa-building"></i> Accueil</a>
+                    	<a href="indexInvestisseur.jsp"> Accueil</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-building"></i> Sociétés</a>
-                    </li>
+                        <a href="societes.jsp"><i class="fa fa-fw fa-building"></i> Sociétés</a>
+                    </li>                    
                     <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-dashboard"></i> En cours de négociation</a>
-                    </li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-money"></i> Marché OTC<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse" aria-expanded="false" style="height: 0px;">
+                            <li>
+                                <a href="Offres">Voir les offres</a>
+                            </li>
+                            <li>
+                                <a href="createOffre.jsp">Créer une offre</a>
+                            </li>
+                        </ul>
+                    </li>                 
+                    
                     <li>
-                        <a href="contrats.jsp"><i class="fa fa-fw fa-money"></i>Marché OTC</a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo2" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-money"></i> En cours<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo2" class="collapse" aria-expanded="false" style="height: 0px;">
+                            <li>
+                                <a href="MesEncheres">Mes Enchères</a>
+                            </li>
+                            <li>
+                                <a href="MesOffres">Mes Offres</a>
+                            </li>
+                        </ul>
                     </li>
+                    
+                    <li>
+                        <a href="historique.jsp"><i class="fa fa-fw fa-list"></i> Historique</a>
+                    </li>   
                    
                 </ul>
             </div>
@@ -245,23 +178,6 @@
                             </a>
                         </div>
                     </div>
-                   
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>Statistiques ce mois-ci</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-area-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                
-
             </div>
             <!-- /.container-fluid -->
 
