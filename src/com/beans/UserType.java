@@ -3,7 +3,7 @@ package com.beans;
 public enum UserType {
 	  	Administrateur("Administrateur"),
 	  	Investisseur("Investisseur"),
-	  	Societe("Societé");
+	  	Societe("Societe");
 	  	
 	  	private String type;
 	  	UserType(String type){

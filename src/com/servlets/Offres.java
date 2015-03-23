@@ -63,7 +63,7 @@ public class Offres extends HttpServlet {
 			l2.add(c.getActif() instanceof Action?"Action":"Option" );
 			l2.add(c.getQuantite()+"");
 			l2.add(c.getTypeN().toString());
-			l2.add(c instanceof ContratEnchere?"Enchère":"Direct");
+			l2.add(c instanceof ContratEnchere?"EnchÃ¨re":"Direct");
 			Locale loc=new Locale("en_US");
 			NumberFormat nf = NumberFormat.getNumberInstance(loc);
 			DecimalFormat df = (DecimalFormat)nf;

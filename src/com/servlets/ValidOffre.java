@@ -61,6 +61,10 @@ public class ValidOffre extends HttpServlet {
 					sc.fin(idce, encherisseur.getIdInvestisseur());					
 				else
 					sc.encherir(idce, montant, encherisseur);
+				
+				String site = "Offres" ;
+				response.setStatus(response.SC_MOVED_TEMPORARILY);
+				response.setHeader("Location", site); 
 			} catch (OffrePerime e) {
 	
 				e.printStackTrace();
